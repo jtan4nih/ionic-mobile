@@ -17,6 +17,10 @@ angular.module('app.services', ['angularMoment'])
     //   debugger
       
     //   if(hosttype === 'web') {
+      if(hosttype.indexOf('amazonaws') > -1) {
+        host = 'http://ec2-54-175-194-254.compute-1.amazonaws.com:3000';
+        localStorage.setItem(stemcfg.apihost, host);
+      } else
       if(hosttype.indexOf('3064') > -1) {
 //   if(mode === 'dev') {
         host = 'http://localhost:3064';
@@ -29,7 +33,7 @@ angular.module('app.services', ['angularMoment'])
         && apihost !== ''
         && apihost !== null
         )) {
-            host = 'http://ec2-54-175-194-254.compute-1.amazonaws.com:3000';
+            host = 'http://ec2-54-193-69-129.us-west-1.compute.amazonaws.com:3000';
             // host = 'http://17.173.176.198:3000';
             localStorage.setItem(stemcfg.apihost, host);
         } else {
