@@ -1,0 +1,7 @@
+{
+    "name": "Devdactic Ionic",
+    "description": "A simple Ionic app",
+    "repository": "https://github.com/radiantexp/stem2-mobile",
+    "logo": "http://pathToYourLogo.png",
+    "keywords": ["ionic", "stem2", "nodejs"]
+}

@@ -1,0 +1,19 @@
+{
+  "name": "tests",
+  "version": "1.0.0",
+  "description": "Setup -----",
+  "main": "protractor.conf.bs.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "body-parser": "^1.15.0",
+    "cors": "^2.7.1",
+    "nock": "^8.0.0",
+    "node-fs": "^0.1.7",
+    "node-options": "0.0.7"
+  }
+}

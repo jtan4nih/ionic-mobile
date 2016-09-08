@@ -1,0 +1,12 @@
+{
+  "name": "stem2-mobile",
+  "app_id": "b2a826e8",
+  "gulpStartupTasks": [
+    "sass",
+    "watch"
+  ],
+  "watchPatterns": [
+    "www/**/*",
+    "!www/lib/**/*"
+  ]
+}

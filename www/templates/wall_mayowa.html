@@ -1,0 +1,180 @@
+<ion-view cache-view=“false” title="Wall ({{wall.items.length}})" id="page7" hide-back-button="true">
+  <ion-content overflow-scroll="true" padding="true" class="has-header">
+    <ion-refresher on-refresh="wall.reload()"></ion-refresher>
+    <div>{{wall.processingMessage}}</div>
+    <!--<a ng-click="openPostComment($event)" id="wall-button11" style="font-size:-4px;" class="button button-positive  button-block button-outline icon-right ion-edit">Post Comment</a>-->
+    <button class="button button-energized"
+        ng-click="openModal()"
+        id="wall-button11"
+        style="font-size:-4px;width:100%;"
+        class="button button-positive button-full button-block button-outline icon-right ion-edit">
+        What's Happening?
+    </button>
+
+    <!-- Mockup Content -->
+    <!--<div class="list card">-->
+      <!-- Topic -->
+      <!-- Topic Header-->
+
+      <!--<script id="my-popover.html" type="text/ng-template">-->
+      <!--  <ion-popover-view>-->
+      <!--    <ion-header-bar>-->
+      <!--      <h1 class="title">My Popover Title</h1>-->
+      <!--    </ion-header-bar>-->
+      <!--    <ion-content>-->
+      <!--      Hello!-->
+      <!--    </ion-content>-->
+      <!--  </ion-popover-view>-->
+      <!--</script>-->
+
+      <!--<ion-item class="item-icon-right item-avatar topic">-->
+      <!--  <img class="item-text-wrap" src="http://avatarfiles.alphacoders.com/296/2961.jpg">-->
+      <!--  <h2>Emma</h2>-->
+      <!--  <p><time>2h</time></p>-->
+      <!--  <i class="icon ion-android-more-vertical"></i>-->
+      <!--</ion-item>-->
+      <!-- /Topic Header-->
+      <!-- Topic Conetnt-->
+      <!--<ion-item class="item-body">-->
+      <!--  <p>Pommy ipsum daft cow golly gosh her Majesty's pleasure blighty Bad Wolf big light pants nosh, horses for courses flabbergasted a fiver a diamond geezer Sherlock chav quid 'tis.</p>-->
+      <!--</ion-item>-->
+      <!-- /Topic Content-->
+      <!-- Topic Meta-->
+      <!--<ion-item class="item-icon-left item-icon-right">-->
+      <!--  <i class="icon ion-ios-heart-outline"> <p class="subdued">3 likes</p></i>-->
+      <!--  <a  ng-click="showPopup()" class="button button-icon icon  ion-reply"></a>-->
+      <!--</ion-item>-->
+      <!-- /Topic Meta-->
+      <!-- Topic -->
+      <!-- Comment 1 Liked -->
+      <!--<ion-item class="comment item-avatar item-icon-right item-text-wrap">-->
+      <!--  <img class="item-text-wrap" src="http://avatarfiles.alphacoders.com/451/45172.jpg">-->
+      <!--  <i class="icon ion-ios-heart energized"></i>-->
+      <!--  <h2>Shia</h2>-->
+      <!--  <p>This is a comment. It's in response to the topic.</p>-->
+      <!--</ion-item>-->
+      <!-- Comment 1 Liked -->
+      <!-- Comment 2 Unliked -->
+      <!--<ion-item class="comment item-avatar item-icon-right item-text-wrap">-->
+      <!--  <img class="item-text-wrap" src="http://avatarfiles.alphacoders.com/296/2961.jpg">-->
+      <!--  <i class="icon ion-ios-heart-outline"></i>-->
+      <!--  <h2>Emma</h2>-->
+      <!--  <p>This is another comment. It's in response to the same topic.</p>-->
+      <!--</ion-item>-->
+      <!-- / Comment 2 -->
+      <!-- Comment 3 Liked -->
+      <!--<ion-item class="comment item-avatar item-icon-right item-text-wrap">-->
+      <!--  <img class="item-text-wrap" src="http://avatarfiles.alphacoders.com/422/42208.png">-->
+      <!--  <i class="icon ion-ios-heart energized"></i>-->
+      <!--  <h2>Mr. T</h2>-->
+      <!--  <p>I pity the fool!</p>-->
+      <!--</ion-item>-->
+      <!-- / Comment 3 -->
+    <!--</div>-->
+    <!--<div class="list card">-->
+      <!-- Topic -->
+      <!-- Topic Header-->
+
+    <!--  <ion-item class="item-avatar item-icon-right topic">-->
+    <!--    <img class="item-text-wrap" src="http://avatarfiles.alphacoders.com/422/42208.png">-->
+    <!--    <h2>Mr. T</h2>-->
+    <!--    <p><time>5h</time></p>-->
+    <!--    <i class="icon ion-android-more-vertical"></i>-->
+
+    <!--  </ion-item>-->
+      <!-- /Topic Header-->
+      <!-- Topic Conetnt-->
+    <!--  <ion-item class="item-body">-->
+    <!--    <img class="full-image" src="http://lorempicsum.com/up/627/300/4">-->
+    <!--    <p>Pommy ipsum daft cow golly gosh her Majesty's pleasure.</p>-->
+    <!--  </ion-item>-->
+      <!-- /Topic Content-->
+      <!-- Topic Meta-->
+    <!--  <ion-item class="item-icon-left item-icon-right">-->
+    <!--    <i class="icon ion-ios-heart energized"> <p class="subdued"> 7 likes</p></i>-->
+    <!--      <a  ng-click="showPopup()" class="button button-icon icon  ion-reply"></a>-->
+    <!--  </ion-item>-->
+      <!-- /Topic Meta-->
+      <!-- Topic -->
+      <!-- Comment 2 Unliked -->
+    <!--  <ion-item class="comment item-avatar item-icon-right item-text-wrap">-->
+    <!--    <img class="item-text-wrap" src="http://avatarfiles.alphacoders.com/296/2961.jpg">-->
+    <!--    <i class="icon ion-ios-heart-outline"></i>-->
+    <!--    <h2>Emma</h2>-->
+    <!--    <p>Cool photo!</p>-->
+    <!--  </ion-item>-->
+      <!-- / Comment 2 -->
+    <!--</div>-->
+    <!--<br><br>-->
+    <!-- /Mockup Content -->
+
+    <div collection-repeat="item in wall.items track by $index">
+      <div class="list card">
+        <!--<ion-item ng-show="wall.isTopicOwner(item)" class="item-avatar">-->
+        <!--  <img ng-class="wall.messageStyleByMessageType(item)" src="//placeholdit.imgix.net/~text?txtsize=12&txt=100%C3%97100&w=50&h=50">-->
+        <!--  <h2>{{item.subject}}</h2>-->
+        <!--  <p><time>{{ item.createdate | amUtcOffset:'+0000' | amCalendar }}</time></p>-->
+          <!--<button ng-click="wall.saveLike(this, $index)" ng-class="wall.likeStyleByFlagState(item)">{{item.likecount>0?item.likecount:''}}</button>-->
+        <!--  <span ng-if="wall.isTopicOwner(item)" ng-click="openReplyTo($event, item)" id="wall-button10"><i class="icon ion-reply"></i> Reply</span>-->
+        <!--  <h2 ng-class="wall.messageStyleByMessageType(item)">{{item.text}}<span style="display:none"> ***TEST MESSAGE = Owner: {{item.owner}} Message id: {{item.id}}</span></h2>-->
+        <!--</ion-item>-->
+<!--begin topic -->
+<!--<ion-item ng-show="wall.isTopicOwner(item)" class="item-icon-right item-avatar topic">-->
+<!--  <img class="item-text-wrap" src="http://avatarfiles.alphacoders.com/296/2961.jpg">-->
+<!--  <h2>{{item.ownerName}}</h2>-->
+<!--  <p><time>{{ item.createdate | amUtcOffset:'+0000' | amCalendar }}</time></p>-->
+<!--  <i class="icon ion-android-more-vertical"></i>-->
+<!--</ion-item>-->
+<!--<ion-item ng-show="wall.isTopicOwner(item)" class="item-body">-->
+<!--  <p>{{item.text}}</p>-->
+<!--</ion-item>-->
+<!--<ion-item ng-show="wall.isTopicOwner(item)" class="item-icon-left item-icon-right">-->
+<!--  <i ng-click="wall.saveLike(this, $index)" class="icon ion-ios-heart-outline"> <p ng-show="item.likecount == 1" class="subdued">{{item.likecount>0?item.likecount+' like':''}}</p><p ng-show="item.likecount > 1" class="subdued">{{item.likecount>0?item.likecount+' likes':''}}</p></i>-->
+<!--  <a ng-click="openModal(item)" class="button button-icon icon ion-reply"></a>-->
+<!--</ion-item>-->
+<!--end topic -->
+<!--<div ng-show="wall.isTopicOwner(item)" class="item clearfix"></div>-->
+<!-- begin comment -->
+<ion-item ng-style="wall.getItemCSSStyle(item)" class="item-avatar item-icon-right item-text-wrap">
+    <img class="item-text-wrap" src="http://avatarfiles.alphacoders.com/451/45172.jpg">
+    <!--<i class="icon ion-ios-heart energized"></i>-->
+    <h2>{{item.ownerName}}</h2>
+    <p><time>{{ item.createdat | amCalendar }}</time></p>
+<!-- @mayowa if you like, try to uncomment the following line -->
+<!--<p><time>{{ item.createdat | amDateFormat:'MM.DD.YYYY HH:mm:ss' }}</time></p>-->
+    <p>{{item.text}}</p>
+    <button ng-if="wall.isTopicOwner(item)" ng-click="openModal(item)" class="wall-reply button button-icon icon icon-right ion-reply"></button>
+</ion-item>
+<ion-item>
+    <i ng-click="wall.saveLike(this, $index)" class="icon icon-left ion-ios-heart-outline">
+        <span ng-show="item.likecount == 1" class="subdued" >{{item.likecount>0?item.likecount+' like':''}}</span><span ng-show="item.likecount > 1" class="subdued">{{item.likecount>0?item.likecount+' likes':''}}</span>
+<!--@mayowa please uncomment the following to see the original class wuth the selected heart-->
+<!--<p ng-show="item.likecount == 1" class="subdued" ng-class="wall.likeStyleByFlagState(item)">{{item.likecount>0?item.likecount+' like':''}}</p>-->
+<!--<p ng-show="item.likecount > 1" class="subdued" ng-class="wall.likeStyleByFlagState(item)">{{item.likecount>0?item.likecount+' likes':''}}</p>-->
+    </i>
+</ion-item>
+<!-- end comment -->
+      </div>
+    </div>
+
+    <ion-infinite-scroll on-infinite="wall.loadMoreItems()" distance="1%" ng-if="hasMoreData" immediate-check="false"></ion-infinite-scroll>
+          <!--<div id="mydata"></div>-->
+        </ion-content>
+        <div class="tabs tabs-icon-top">
+          <a class="tab-item">
+            <i class="icon ion-ios-list energized "></i>
+          </a>
+          <a class="tab-item">
+            <i class="icon ion-ios-game-controller-b-outline"></i>
+          </a>
+          <a class="tab-item">
+            <i class="icon ion-paper-airplane energized"></i>
+          </a>
+          <a class="tab-item">
+            <i class="icon ion-ios-chatboxes-outline"></i>
+          </a>
+          <a class="tab-item">
+            <i class="icon ion-ios-person-outline"></i>
+          </a>
+        </div>
+      </ion-view>

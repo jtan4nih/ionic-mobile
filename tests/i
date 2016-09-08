@@ -1,0 +1,1 @@
+. ~/.bash_profile && nvm i 5 && nvm use 5 && npm i && npm i protractor -g && $NVM_BIN/webdriver-manager update --standalone

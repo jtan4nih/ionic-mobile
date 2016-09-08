@@ -1,0 +1,24 @@
+<!--<ion-view title="Login" hide-back-button="true">-->
+<ion-view title="Login" hide-nav-bar="true" hide-back-button="true">
+    <ion-content overflow-scroll="true" padding="true" class="has-header">
+
+      <h2 style="text-align: center">Welcome to Stempowerment</h2>
+        <form class="list">
+            <ion-list>
+                <label class="item item-input">
+                    <input id="loginid" type="text" placeholder="Email Address" ng-model="login.userId" autocorrect="off"
+                           autocapitalize="off"
+                           ng-enter="login.isAuthenticated()">
+                </label>
+                <label class="item item-input">
+                    <input id="password" type="password" placeholder="Password" ng-model="login.password"
+                           ng-enter="login.isAuthenticated()">
+                </label>
+            </ion-list>
+            <div class="spacer" style="height: 40px;"></div>
+            <button ng-click="login.isAuthenticated()" id="login-button1" style="font-weight:;" class="button button-calm button-block">Log in</button>
+            <a href="#" onclick="window.open('/signup', '_system', 'location=yes'); return false;" id="login-button2" style="font-size:12px;" class="button button-stable  button-block button-clear">Forgot password?</a>
+        </form>
+        <div id="mydata"></div>
+    </ion-content>
+</ion-view>

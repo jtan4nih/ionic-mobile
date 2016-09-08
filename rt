@@ -1,0 +1,4 @@
+echo "Make sure you have also run the API services locally!!!!!!!!!!!!!!"
+echo "******************************************************************"
+
+. ~/.bash_profile && nvm i 5 && nvm use 5 && cd tests && ./r && cd ..

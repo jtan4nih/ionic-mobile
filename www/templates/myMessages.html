@@ -1,0 +1,35 @@
+<ion-view cache-view=“false” title="MyMessages" id="page11" class=" ">
+    <ion-content padding="true" class="has-header">
+
+        <a ui-sref="menu.toMessage" id="myMessages-button22" class=" button button-positive  button-block ">Message</a>
+
+        <div class="item" collection-repeat="item in inbox.items track by $index">
+            <div class="list list-inset">
+                <ion-list class="item item-avatar" ng-click="inbox.selectToWho(item)">
+                    <h2>{{item.source}}</h2>
+                    <p><time>{{ item.createdate | amUtcOffset:'+0000' | amCalendar }}</time></p>
+                    <h2>{{item.text}}<span style="display:none"> ***TEST MESSAGE = Owner: {{item.owner}} Message id: {{item.id}}</span></h2>
+                </ion-list>
+            </div>
+        </div>
+
+    </ion-content>
+
+    <div class="tabs tabs-icon-top">
+      <a class="tab-item">
+        <i class="icon ion-ios-list"></i>
+      </a>
+      <a class="tab-item">
+        <i class="icon ion-ios-game-controller-b"></i>
+      </a>
+      <a class="tab-item">
+        <i class="icon ion-paper-airplane energized"></i>
+      </a>
+      <a class="tab-item">
+        <i class="icon ion-ios-chatboxes energized"></i>
+      </a>
+      <a class="tab-item">
+        <i class="icon ion-ios-person-outline"></i>
+      </a>
+    </div>
+</ion-view>

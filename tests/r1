@@ -1,0 +1,3 @@
+echo "Launch only a single spec (excluding suffix _spec.js!!!)"
+
+. ~/.bash_profile && nvm i 5 && nvm use 5&& PORT=8080 MOCK_API_PORT=3064 DEBUG=nock.* protractor protractor.conf.js --specs spec/"$1"_spec.js

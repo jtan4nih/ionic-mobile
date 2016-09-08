@@ -1,0 +1,1 @@
+set PATH=c:\Nodist\bin;%PATH%

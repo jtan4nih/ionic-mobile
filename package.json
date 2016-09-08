@@ -1,0 +1,42 @@
+{
+  "name": "ionic-project",
+  "version": "1.1.1",
+  "description": "An Ionic project",
+  "scripts": {
+    "start": "node .",
+    "lint": "jshint www/js/controllers.js"
+  },
+  "dependencies": {
+    "angular-resource": "^1.5.7",
+    "express": "^4.13.4",
+    "gulp": "^3.5.6",
+    "gulp-concat": "^2.2.0",
+    "gulp-minify-css": "^0.3.0",
+    "gulp-rename": "^1.2.0",
+    "gulp-sass": "^2.0.4",
+    "http-server": "^0.9.0",
+    "scriptjs": "^2.5.8",
+    "whatwg-fetch": "^1.0.0"
+  },
+  "devDependencies": {
+    "bower": "^1.3.3",
+    "cors": "^2.7.1",
+    "css-loader": "^0.23.1",
+    "gulp-util": "^2.2.14",
+    "html-webpack-plugin": "^2.15.0",
+    "http-server": "^0.9.0",
+    "node-fs": "^0.1.7",
+    "nodemon": "^1.9.1",
+    "shelljs": "^0.3.0",
+    "style-loader": "^0.13.1"
+  },
+  "cordovaPlugins": [
+    "cordova-plugin-whitelist",
+    "cordova-plugin-statusbar",
+    "cordova-plugin-console",
+    "cordova-plugin-device",
+    "cordova-plugin-splashscreen",
+    "ionic-plugin-keyboard"
+  ],
+  "cordovaPlatforms": []
+}

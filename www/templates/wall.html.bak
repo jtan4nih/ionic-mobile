@@ -1,0 +1,35 @@
+<ion-view title="Wall ({{wall.items.length}})" id="page7" hide-back-button="true">
+    <ion-content overflow-scroll="true" padding="true" class="has-header">
+        <ion-refresher on-refresh="wall.reload()"></ion-refresher>
+        <div>{{wall.processingMessage}}</div>
+        <a ng-click="openPostComment($event)" id="wall-button11" style="font-size:-4px;" class="button button-positive  button-block button-outline icon-right ion-edit">Post Comment</a>
+        <div collection-repeat="item in wall.items track by $index">
+<div class="list list-inset">
+
+            <ion-item>
+                <img class="item-thumbnail-left item-text-wrap" ng-class="wall.messageStyleByMessageType(item)" src="//placeholdit.imgix.net/~text?txtsize=12&txt=100%C3%97100&w=50&h=50">
+                <!-- <h2> Created by: {{wall.getOwner(item.subject)}}</h2>-->
+                <h2>{{item.subject}}</h2>
+                <p><time>{{ item.createdate | amUtcOffset:'+0000' | amCalendar }}</time></p>
+                <button ng-click="wall.saveLike(this, $index)" ng-class="wall.likeStyleByFlagState(item)">{{item.likecount>0?item.likecount:''}}</button>
+                <span ng-if="wall.isTopicOwner(item)" ng-click="openReplyTo($event, item)" id="wall-button10"><i class="icon ion-reply"></i>Reply</span>
+              <h2 ng-class="wall.messageStyleByMessageType(item)">{{item.text}}<span style="display:none"> ***TEST MESSAGE = Owner: {{item.owner}} Message id: {{item.id}}</span></h2>
+            </ion-item>
+            <!--<h2 ng-class="wall.messageStyleByMessageType(item)">{{item.text}}<span style="display:none"> ***TEST MESSAGE = Owner: {{item.owner}} Message id: {{item.id}}</span><span style="float:right"><time>{{ item.createdat | amUtcOffset:'+0000' | amCalendar }}</time></span></h2>-->
+            <!--<p style="display:none">***TEST MESSAGE = Grouped by Thread id: {{item.threadid}} Message type: {{item.type}}***</p>-->
+            <!--<ion-item ng-if="wall.isTopicOwner(item)" ng-click="openReplyTo($event, item)" id="wall-button10">Reply</ion-item>-->
+</div>
+        </div>
+        
+        <ion-infinite-scroll on-infinite="wall.loadMoreItems()" distance="1%" ng-if="hasMoreData" immediate-check="false"></ion-infinite-scroll>
+        <div class="button-bar">
+            <button id="wall-button6" style="font-size:11px;" class="button button-positive  button-block icon ion-home">
+                <br>HOME</button>
+            <button id="wall-button7" style="font-size:11px;" class="button button-positive  button-block icon ion-person">
+                <br>PROFILE</button>
+            <button id="wall-button8" style="font-size:11px;" class="button button-positive  button-block icon ion-email">
+                <br>MESSAGES</button>
+        </div>
+        <div id="mydata"></div>
+    </ion-content>
+</ion-view>

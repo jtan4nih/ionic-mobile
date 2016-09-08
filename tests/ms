@@ -1,0 +1,2 @@
+. ~/.bash_profile && nvm use 5 && MOCK_API_PORT=3064 ../node_modules/nodemon/bin/nodemon.js mockAPIServer
+#MOCK_API_PORT=3064 node mockAPIServer

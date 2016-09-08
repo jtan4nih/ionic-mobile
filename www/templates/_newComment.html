@@ -1,0 +1,18 @@
+<ion-popover-view>
+<ion-view title="New Comment" id="page8">
+    <ion-content overflow-scroll="false" padding="true" class="has-header">
+
+        <div class="list list-inset">
+            <div class="item item-divider">Comment
+                <button id="closeme" ng-click="closePopover($event)" class="icon ion-close" style="background-color:transparent;border:0;float:right"></button>
+            </div>
+            <label class="item item-stacked">
+                <textarea placeholder="Add a comment" ng-model="wall.item1"></textarea>
+            </label>
+            <div class="item item-stacked-button">
+                <button ng-click="wall.createMessage(wall.item1)" id="newComment-button10" class="button button-positive button-block button-medium">POST</button>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
+</ion-popover-view>

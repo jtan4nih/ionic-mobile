@@ -1,0 +1,16 @@
+<ion-modal-view class="modal slide-in-up ng-enter active ng-enter-active">
+  <ion-header-bar class="bar bar-header bar-energized">
+    <h1 class="title" style="left: 64px; right: 64px;">What's Happening?</h1>
+    <button class="button button-clear" ng-click="modal.hide()">Cancel</button>
+  </ion-header-bar>
+  <ion-content class="padding scroll-content ionic-scroll  has-header"><div class="scroll" style="transform: translate3d(0px, 0px, 0px) scale(1);">
+
+
+
+    <div class="list list-inset">
+      <textarea style="width: 100%" rows="10" ng-model="wall.item1" autofocus></textarea>
+
+      <button class="button button-full button-energized" ng-click="wall.replyMessage(wall.item1)">Post</button>
+    </div>
+  </div><div class="scroll-bar scroll-bar-v"><div class="scroll-bar-indicator scroll-bar-fade-out" style="transform: translate3d(0px, 0px, 0px) scaleY(1); height: 0px;"></div></div></ion-content>
+</ion-modal-view>

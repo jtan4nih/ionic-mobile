@@ -1,0 +1,1 @@
+. ~/.bash_profile && nvm i 5 && nvm use 5 && PORT=8080 SAUCE_USERNAME=$1 SAUCE_ACCESS_KEY=$2 protractor ./protractor.conf.sl.js

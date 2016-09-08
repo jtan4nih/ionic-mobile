@@ -1,0 +1,38 @@
+<style>
+    .platform-android .scroll-content{
+      margin-top: 0;
+      margin-bottom:0;
+      padding-top:0;
+    }
+    .scroll{
+      height:100% !important
+    }
+</style>
+<ion-view title="MyMessages" id="page11" class=" ">
+    <ion-content padding="true">
+        <ion-pane>
+          <ion-header-bar class="bar-positive">
+            <h1 class="title">Recipients</h1>
+            <div class="buttons">
+                <button class="button button-icon ion-android-search" 
+                        ng-click="to.showFilterBar()"></button>
+            </div>
+          </ion-header-bar>
+          <ion-content>
+            <ion-list>
+              <ion-item collection-repeat="item in to.items">
+                <div ng-click="to.selectToMessage(item)">{{item.name}} ({{ item.email }})</div>
+              </ion-item>
+            </ion-list>  
+          </ion-content>
+        </ion-pane>
+        <div id="myMessages-button-bar3" class=" button-bar ">
+            <button id="myMessages-button19" style="font-size:11px;" class=" button button-positive  button-block icon ion-home ">
+                <br>HOME</button>
+            <button id="myMessages-button20" style="font-size:11px;" class=" button button-positive  button-block icon ion-person ">
+                <br>PROFILE</button>
+            <button id="myMessages-button21" style="font-size:11px;" class=" button button-positive  button-block icon ion-email ">
+                <br>MESSAGES</button>
+        </div>
+    </ion-content>
+</ion-view>

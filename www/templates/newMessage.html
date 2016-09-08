@@ -1,0 +1,24 @@
+<ion-view title="New Message" id="page12" class=" ">
+    <ion-content padding="true" class="has-header">
+
+<form id="newMessage-form8" class="list ">
+    <label class="item item-input">
+        <input value="{{msg.recipientName}}" type="input" placeholder="Click the button to pick or just enter it here">
+    </label>
+</form>
+
+        <div class="list card " id="newMessage-card3">
+            <div class="item item-divider">Text</div>
+            <div class="item item-body">
+                <form id="newMessage-form6" class="list ">
+                    <label class="item item-input " id="newMessage-textarea4">
+                        <span class="input-label"></span><textarea ng-model="msg.text" placeholder="Add a comment"></textarea>
+                    </label>
+                </form>
+            </div>
+        </div>
+        <form id="newMessage-form7" class="list ">
+            <button ng-click="msg.sendMessage(msg.recipientId, msg.recipientName, msg.recipientEmail)" id="newMessage-button23" class=" button button-positive  button-block ">SEND</button>
+        </form>
+    </ion-content>
+</ion-view>

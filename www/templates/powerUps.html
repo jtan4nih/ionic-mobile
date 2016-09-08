@@ -1,0 +1,10 @@
+<ion-view title="PowerUps">
+    <ion-content overflow-scroll="true" padding="true" class="has-header">
+        <a ui-sref="menu.powerUpsEdit" id="powerUps-button3" class="button button-stable  button-block">Add</a>
+        <ion-list>
+          <ion-item ng-repeat="film in films" ui-sref="menu.powerUpsEdit({id:film.id})">{{film
+            .title}}</ion-item>
+        </ion-list>
+    </ion-content>
+    <div id="mydataPowerUps"></div>
+</ion-view>

@@ -1,0 +1,67 @@
+.item-topic {
+  padding-left: 0px;
+  height: 150px;
+  .item-avatar-topic > img:first-child {
+    max-width: 200px;
+    max-height: 200px;
+  }
+}
+
+.item-comment {
+  /*height: 150px;*/
+  .item-avatar-comment > img:first-child {
+    max-width: 100px;
+    max-height: 100px;
+  }
+}
+
+.wall-new-message {
+  padding-left:0px;
+  /*margin-top:50px;*/
+  /*height: 150px;*/
+}
+
+.wall-replied-message {
+
+}
+
+.wall-reply-to-button {
+  display:none
+}
+
+.topic {
+
+}
+
+.comment ion-item {
+  background-color: #f9f9f9;
+}
+
+.clearfix {
+    clear: both;
+}
+
+.card {
+  transform:translate(0px,20px);
+}
+
+textarea {
+  width: 100%;
+  border: 1px solid #eee;
+}
+
+
+.ion-reply {
+  -moz-transform: scaleX(-1);
+-o-transform: scaleX(-1);
+-webkit-transform: scaleX(-1);
+transform: scaleX(-1);
+filter: FlipH;
+-ms-filter: "FlipH";
+}
+
+
+
+[collection-repeat] {
+  // transform: translate3d(0px, 0px, 0px) !important;
+}
