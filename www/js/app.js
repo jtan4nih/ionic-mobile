@@ -77,7 +77,7 @@ function configure($httpProvider,LoopBackResourceProvider) {
         var apihost = localStorage.getItem('apihost') || '';
 // debugger
         if(apihost.trim() !== '') {
-            host = 'http://50.28.56.122:3000';
+            host = 'http://ec2-54-175-194-254.compute-1.amazonaws.com:3000';
             // host = 'http://17.173.176.198:3000';
         } else {
             // debugger
