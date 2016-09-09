@@ -5,17 +5,21 @@ var gitems;   //just for test
 /**
 Usesful SQLs:
 
-select count(*) as usersthreads,0 as threads,0 as flags,0 as messages,0 as users,0 as powerups from usersthreads
+select sum(a.quests), sum(a.powerups), sum(a.usersthreads), sum(a.threads), sum(a.flags), sum(a.messages) from (
+select count(*) as usersthreads,0 as threads,0 as flags,0 as messages,0 as users,0 as quests, 0 as powerups from usersthreads
 union
-select 0,count(*),0,0,0,0 from threads
+select 0,count(*),0,0,0,0,0 from threads
 union
-select 0,0,count(*),0,0,0 from flags
+select 0,0,count(*),0,0,0,0 from flags
 union
-select 0,0,0,count(*),0,0 from messages
+select 0,0,0,count(*),0,0,0 from messages
 union
-select 0,0,0,0,count(*),0 from users
+select 0,0,0,0,count(*),0,0 from users
 union
-select 0,0,0,0,0,count(*) from powerups
+select 0,0,0,0,0,count(*),0 from quests
+union
+select 0,0,0,0,0,0,count(*) from powerups
+) a
 
 Note: a space after -- is required!
 -- delete from usersthreads;
@@ -27,6 +31,9 @@ Note: a space after -- is required!
 
 Useful Explorer filter:
 
+GET /Questspowerups
+{"where": {"questsid": 1}}
+{"where": {"powerupsid": 1}}
 GET /Users
 {"where": {"name": "user1@gmail.com"}}
 GET /Quests
@@ -40,7 +47,7 @@ References:
 
 https://github.com/urish/angular-moment
 */
-angular.module('app.controllers', [])
+angular.module('app.controllers', ['controller.quests','controller.powerups'])
 
 .controller('newMessageCtrl', function($location, $ionicFilterBar, Users, $scope, stemcfg, StemFactory, StemService, $state, $stateParams, capi) {
     StemFactory.store('newMessagesCtrl', $scope);

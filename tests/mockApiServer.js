@@ -54,6 +54,15 @@ app.all('/explorer/swagger.json', function (req, res) {
     res.end();
 });
 
+app.all('/api/*Questspowerups?filter*', function (req, res) {
+    var obj = `
+[{"id":3,"questsid":2,"powerupsid":1,"powerups":{"id":1,"title":"Hydration PU 1","what":"a brief instruction () describing how to complete the Hydration","how":"a corresponding explanation of how the Hydration may be beneficial to the user","category":"Hydration","subcategory":"Brainstorm","state":"Incomplete","point":0,"questsId":null}}]
+    `;
+    if (req.method == 'GET') {
+        res.status(200).send(obj);
+    }
+    res.end();
+});
 
 app.all('/api/*Usersthreads/*inbox*', function (req, res) {
     var obj = `

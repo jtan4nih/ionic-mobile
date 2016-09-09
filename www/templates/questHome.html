@@ -3,7 +3,7 @@
         <ion-list ng-repeat="item in quest.items track by $index">
 
             <!--<ion-item id="questHome-list-item12" ui-sref="menu.questJoin" class="  ">Item 1</ion-item>-->
-            <ion-item id="questHome-list-item23" class=" ">{{item.title}} - {{item.decription}}</ion-item>
+            <ion-item id="questHome-list-item23" ng-click="quest.selectQuest(item)" class=" ">{{item.title}} - {{item.description}}</ion-item>
         </ion-list>
     </ion-content>
 </ion-view>

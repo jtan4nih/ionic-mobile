@@ -63,6 +63,9 @@ angular.module('app.services', ['angularMoment'])
         }
         return userdf.first_name + " " + userdf.last_name;
     },
+    getUserId: function(stemcfg) {
+        return localStorage.getItem(stemcfg.userid)
+    },
     isSwaggerClientResponse: function(data) {
         // debugger
         var ret;
