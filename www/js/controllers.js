@@ -264,6 +264,7 @@ console.log('questCtrl 2');
     // alert($stateParams.m);
 
     StemFactory.store('loginCtrl', $scope);
+
     // StemService.handleInvalidSession($state, $scope, localStorage.getItem(stemcfg.userid), $ionicPopup, $stateParams.m);
     // debugger
     var webHost = StemService.getRealHost($location.absUrl(), stemcfg, $stateParams);
@@ -496,6 +497,8 @@ localStorage.setItem(stemcfg.username, json.user.first_name + json.user.last_nam
     StemService.handleInvalidSession($state, $scope, localStorage.getItem(stemcfg.userid), $ionicPopup, $stateParams.m);
     StemFactory.store('wallCtrl', $scope);
     var component = this;
+    // debugger
+    component.email = localStorage.getItem(stemcfg.user);
     component.postlabel = "What's Happening?";
 
 //TODO need to query the real db!
