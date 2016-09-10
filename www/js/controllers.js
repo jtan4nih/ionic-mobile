@@ -90,6 +90,7 @@ angular.module('app.controllers', ['controller.quests','controller.powerups'])
             // }
             // console.log('/api/UsersThreads sent!');
         }
+// debugger
         console.log('json = ' + json);
         capi(webHost, '/api/UsersThreads/sendmessage', 'POST', 'model', 'method', json, afterPrivateMessageCreate, null);
     }
@@ -272,7 +273,7 @@ console.log('questCtrl 2');
 
     StemFactory.store('loginCtrl', $scope);
 
-    // StemService.handleInvalidSession($state, $scope, localStorage.getItem(stemcfg.userid), $ionicPopup, $stateParams.m);
+    StemService.handleInvalidSession($state, $scope, localStorage.getItem(stemcfg.userid), $ionicPopup, $stateParams.m);
     // debugger
     var webHost = StemService.getRealHost($location.absUrl(), stemcfg, $stateParams);
 // debugger
