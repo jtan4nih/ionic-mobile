@@ -1,25 +1,21 @@
 <ion-view title="Quest - Join" id="page3" class=" ">
     <ion-content padding="true" class="has-header">
         <div class="item item-body " id="questJoin-list-item-container1">
-            <h1 id="questJoin-heading1" style="color:#000000;text-align:center;" class=" ">Title</h1>
             <ion-list id="questJoin-list7" class=" ">
-                <ion-item class="item-thumbnail-left  " id="questJoin-list-item13"></ion-item>
+                <ion-item class="item-icon-right  " id="questJoin-list-item13">{{questJoin.title}}
+                    <i class="icon ion-leaf"></i>
+                </ion-item>
             </ion-list>
+            <div id="questJoin-button-bar2" class=" button-bar ">
+                <button ng-click="questJoin.selectQuestPowerups(questJoin.id)"  id="questJoin-button12" class=" button button-positive  button-block ">PowerUps</button>
+                <a href="#" onclick="window.open('page6', '_system', 'location=yes'); return false;" id="questJoin-button13" class=" button button-positive  button-block ">Activity</a>
+            </div>
+            <div id="questJoin-button-bar5" class=" button-bar ">
+                <button id="questJoin-button26" class=" button button-light  button-block "></button>
+                <button id="questJoin-button27" class=" button button-light  button-block "></button>
+                <a ng-click="questJoin.joinQuest(questJoin.id, questJoin.title, questJoin.description, questJoin.how)" id="questJoin-button28" class=" button button-light  button-block icon-right ion-android-arrow-forward ">Join</a>
+            </div>
+            <div id="questJoin-button-bar4" class=" button-bar "></div>
         </div>
-        <div id="questJoin-button-bar2" class=" button-bar ">
-            <button id="questJoin-button12" class=" button button-positive  button-block ">PowerUps</button>
-            <a ui-sref="menu.questActivity" id="questJoin-button13" class=" button button-positive  button-block ">Activity</a>
-        </div>
-        <p id="questJoin-markdown1" style="color:#000000;" class=" ">
-            <strong>Quest</strong>description</p>
-        <button id="questJoin-button15" class=" button button-positive  button-block ">Join Quest</button>
-        <ion-list id="questJoin-list3" class=" ">
-            <ion-item class="item-icon-left  " id="questJoin-list-item14">
-                <i class="icon ion-images"></i>Item</ion-item>
-            <ion-item class="item-icon-left  " id="questJoin-list-item16">
-                <i class="icon ion-image"></i>Item</ion-item>
-            <ion-item class="item-icon-left  " id="questJoin-list-item15">
-                <i class="icon ion-ios-star-outline"></i>Item</ion-item>
-        </ion-list>
     </ion-content>
 </ion-view>
