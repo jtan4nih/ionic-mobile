@@ -13,6 +13,32 @@ angular.module('app', ['ionic', 'jett.ionic.filter.bar', 'app.controllers', 'app
     };
 })
 
+.factory('serviceLogger', function () {
+    return {
+        request: function (config) {
+            //weed out loading of views - we just want service requests.
+            if (config.url.indexOf('html') == -1) {
+                console.log("HTTP " + config.method + " request: " + config.url);
+            }
+            return config;
+        }
+    };
+})
+
+.factory('serviceJWTTokenAdder', function () {
+    return {
+        request: function (config) {
+            //weed out loading of views - we just want service requests.
+            // if (config.url.indexOf('html') == -1) {
+                var token = localStorage.getItem('stem2token'); //StemService.getJWTToken();
+                config.headers.Authorization = 'Bearer ' + token;
+                // console.log("JWT: " + config.headers.Authorization + " added into HTTP header");
+            // }
+            return config;
+        }
+    };
+})
+
 .run(function($ionicPlatform, amMoment) {
     amMoment.changeTimezone('Europe/Paris');
 
@@ -88,6 +114,11 @@ function configure($httpProvider,LoopBackResourceProvider) {
     // Change the URL where to access the LoopBack REST API server
     LoopBackResourceProvider.setUrlBase(host + '/api/');
     // LoopBackResourceProvider.setUrlBase(stemcfg.getRealHost('web', stemcfg) + '/api/');
+
+    //here's where you add your interceptor
+    $httpProvider.interceptors.push('serviceLogger');
+    $httpProvider.interceptors.push('serviceJWTTokenAdder');
+
 }
 
 window.onerror = function(msg, url, line, col, error) {

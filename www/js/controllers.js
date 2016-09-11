@@ -535,10 +535,10 @@ component.getOwnerAvatar = function(ownerName) {
     //just a test
     var webHost = StemService.getRealHost($location.absUrl(), stemcfg, $stateParams);
     function putCount(data) {
-        var currentTotalMessageCount = data.obj.count;
+        var currentTotalMessageCount = StemService.handleFetchResponse(data).count;
         // console.log('capi: current message count is ' + currentTotalMessageCount);
     }
-    capi(webHost, '/api/Messages/count', 'GET', 'model', 'method', {}, putCount, null, 'swagger');
+    capi(webHost, '/api/Messages/count', 'GET', 'model', 'method', {}, putCount, null);
 
     component.getOwnerId = function(userEmail, cb) {
         var ret = -1;

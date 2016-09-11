@@ -74,7 +74,8 @@ function commonAPI(base_url, uri, action, model, method, jsonData, cb, doneFunc,
               // mode: 'no-cors',
               headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('stem2token')
               },
               body: payload
             })
@@ -225,7 +226,10 @@ if(!isRemote(base_url)) {
                             // console.log(doneFunc);
                             if(cb != null) cb(data); else doneFunc();
                         }); //end of swagger.Messages.Messages_create
-                    } //end of success
+                    }, //end of success
+                    authorizations : {
+                       someHeaderAuth: new SwaggerClient.ApiKeyAuthorization('Authorization', "Bearer " + localStorage.getItem('stem2token'), 'header')
+                    }                    
                 }); //swagger end
             }
             else
