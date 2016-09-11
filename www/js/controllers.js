@@ -31,6 +31,8 @@ Note: a space after -- is required!
 
 Useful Explorer filter:
 
+GET /Audits
+{"where": {"owner": "user1@gmail.com"}}
 GET /Questspowerups
 {"where": {"questsid": 1}}
 {"where": {"powerupsid": 1}}
