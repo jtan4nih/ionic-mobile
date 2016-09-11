@@ -38,28 +38,28 @@ function ($scope, $stateParams) {
         component.title = $stateParams.title;
         component.description = $stateParams.description;
         component.how = $stateParams.how;
-        console.log('questDetailsCtrl item = ' + JSON.stringify(component));
+        // console.log('questDetailsCtrl item = ' + JSON.stringify(component));
         
         getUsersQuestsPowerUps(StemService.getUserId(stemcfg));
     });
 
     component.join = function (id) {
-        console.log('join quests id ' + id);
+        // console.log('join quests id ' + id);
         isUsersQuestsExists(id);
     }
     
     component.exit = function(id) {
-        console.log('exit quests id ' + id);
+        // console.log('exit quests id ' + id);
     }
 
     function isUsersQuestsExists(id) {
         // debugger
         var webHost = StemService.getRealHost($location.absUrl(), stemcfg, $stateParams);
         var userid = StemService.getUserId(stemcfg);
-        console.log('isUsersQuestsExists id = ' + id + ' userid = ' + userid);
+        // console.log('isUsersQuestsExists id = ' + id + ' userid = ' + userid);
         function afterIsUsersQuestsExists(data) {
             // debugger
-            console.log(data);
+            // console.log(data);
             if(data.length == 0) {
                 jointUsersQuests(id);
                 console.log('afterIsUsersQuestsExists joined!');
@@ -79,8 +79,8 @@ function ($scope, $stateParams) {
         .$promise
         .then(function(results) {
             component.items = results;
-            console.log('questDetailsCtrl 1 size ' + component.items.length);
-            console.log(component.items);
+            // console.log('questDetailsCtrl 1 size ' + component.items.length);
+            // console.log(component.items);
             afterIsUsersQuestsExists(component.items);
         });
     }
@@ -88,7 +88,7 @@ function ($scope, $stateParams) {
     function jointUsersQuests(id) {
         var webHost = StemService.getRealHost($location.absUrl(), stemcfg, $stateParams);
         var userid = StemService.getUserId(stemcfg);
-        console.log('jointUsersQuests typeof id = ' + typeof id);
+        // console.log('jointUsersQuests typeof id = ' + typeof id);
         function afterJoinUsersQuests(data) {
             if(data.id == id) {
                 console.log('jointUsersQuests success!');
@@ -114,7 +114,7 @@ function ($scope, $stateParams) {
     function exitUsersQuests(id) {
         var webHost = StemService.getRealHost($location.absUrl(), stemcfg, $stateParams);
         var userid = StemService.getUserId(stemcfg);
-        console.log('exitUsersQuests typeof id = ' + typeof id);
+        // console.log('exitUsersQuests typeof id = ' + typeof id);
         function afterExitUsersQuests(data) {
             // var scope = StemFactory.get('questsPowerUpsCtrl');
             // scope.$apply(function () {
@@ -136,7 +136,7 @@ function ($scope, $stateParams) {
         // debugger
         var webHost = StemService.getRealHost($location.absUrl(), stemcfg, $stateParams);
         var userid = StemService.getUserId(stemcfg);
-        console.log('getUsersQuestsPowerUps typeof id = ' + id);
+        // console.log('getUsersQuestsPowerUps typeof id = ' + id);
         function afterUsersQuestsPowerups(data) {
             // var scope = StemFactory.get('questsPowerUpsCtrl');
             // scope.$apply(function () {
@@ -172,20 +172,20 @@ function ($scope, $stateParams) {
 
     function getQuestsPowerUps(questsid) {
         // debugger
-        console.log('getQuestsPowerUps typeof questsid = ' + typeof questsid);
+        // console.log('getQuestsPowerUps typeof questsid = ' + typeof questsid);
         Questspowerups
             .find({ filter: { where: { questsid: questsid } } })
             .$promise
             .then(function(results) {
                 component.items = results;
-                console.log('questsPowerUpsCtrl 1 size ' + component.items.length);
-                console.log(component.items);
+                // console.log('questsPowerUpsCtrl 1 size ' + component.items.length);
+                // console.log(component.items);
             });
     }
 
     $scope.$on('$ionicView.enter', function(){
         component.id = $stateParams.id;
-        console.log('questsPowerUpsCtrl component = ' + JSON.stringify(component));
+        // console.log('questsPowerUpsCtrl component = ' + JSON.stringify(component));
         getQuestsPowerUps(component.id);
     });
 
@@ -199,7 +199,7 @@ function ($scope, $stateParams) {
     var component = this;
 
     component.joinQuest = function(id, title, description, how) {
-        console.log('questJoinCtrl: joined ' + title);
+        // console.log('questJoinCtrl: joined ' + title);
         $state.go('menu.questDetails', {
             id: id,
             title: title,
@@ -213,11 +213,11 @@ function ($scope, $stateParams) {
         component.title = $stateParams.title;
         component.description = $stateParams.description;
         component.how = $stateParams.how;
-        console.log('questJoinCtrl component = ' + JSON.stringify(component));
+        // console.log('questJoinCtrl component = ' + JSON.stringify(component));
     });
 
     component.selectQuestPowerups = function(item) {
-        console.log('questJoinCtrl: selected ' + JSON.stringify(item));
+        // console.log('questJoinCtrl: selected ' + JSON.stringify(item));
         $state.go('menu.questsPowerUps', {
             id: item
         });
@@ -249,7 +249,7 @@ function ($scope, $stateParams) {
     });
     
     component.selectQuest = function(item) {
-        console.log('questHomeCtrl: selected ' + JSON.stringify(item));
+        // console.log('questHomeCtrl: selected ' + JSON.stringify(item));
         $state.go('menu.questJoin', {
             id: item.id,
             title: item.title,

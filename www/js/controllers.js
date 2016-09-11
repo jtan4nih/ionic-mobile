@@ -81,17 +81,11 @@ angular.module('app.controllers', ['controller.quests','controller.powerups'])
 
     component.createMessage = function(json) {
         function afterPrivateMessageCreate(data) {
-            // debugger
-            // if(StemService.hasError(data)) {
-                console.log(JSON.stringify(data));
-                // StemService.alert(JSON.stringify(data));
-            // } else {
-                StemService.alert('Message sent to ' + component.recipientName + '!');
-            // }
-            // console.log('/api/UsersThreads sent!');
+            // console.log(JSON.stringify(data));
+            StemService.alert('Message sent to ' + component.recipientName + '!');
         }
 // debugger
-        console.log('json = ' + json);
+        // console.log('json = ' + json);
         capi(webHost, '/api/UsersThreads/sendmessage', 'POST', 'model', 'method', json, afterPrivateMessageCreate, null);
     }
 
@@ -103,8 +97,8 @@ angular.module('app.controllers', ['controller.quests','controller.powerups'])
     var component = this;
     // console.log($stateParams.id);
     // console.log($stateParams.towho);
-    console.log($state.params.id);
-    console.log($state.params.towho);
+    // console.log($state.params.id);
+    // console.log($state.params.towho);
     component.id = $state.params.towho;
 
     $scope.$on('$ionicView.enter', function(){
@@ -153,7 +147,7 @@ angular.module('app.controllers', ['controller.quests','controller.powerups'])
     });
 
     function populateItems(results) {
-        console.log(results);
+        // console.log(results);
         var loadItemsLimit = results.messages.length;
         // debugger
         for (var i = 0; i < loadItemsLimit; i++) {
@@ -241,23 +235,23 @@ angular.module('app.controllers', ['controller.quests','controller.powerups'])
 
 .controller('questCtrl', function($ionicPopup, $state, $stateParams, $location, $scope,StemService,stemcfg, $resource, Quests) {
     StemService.handleInvalidSession($state, $scope, localStorage.getItem(stemcfg.userid), $ionicPopup, $stateParams.m);
-    console.log('questCtrl called!');
+    // console.log('questCtrl called!');
 
     var component = this;
     // component.items = Quests;
     $scope.items = [];
     function getQuests() {
-console.log('questCtrl 1');
+// console.log('questCtrl 1');
       Quests
         .find()
         .$promise
         .then(function(results) {
           component.items = results;
-console.log('questCtrl 3 size ' + component.items.length);
+// console.log('questCtrl 3 size ' + component.items.length);
         });
     }
     $scope.$on('$ionicView.enter', function(){
-console.log('questCtrl 2');
+// console.log('questCtrl 2');
         getQuests();
     });
 
@@ -299,8 +293,8 @@ console.log('questCtrl 2');
     component.createLocalUser = function(name, userEmail, cb) {
         function createNow(data) {
             function afterCreateNow(data) {
-                console.log('handleResuls():');
-                console.log(data);
+                // console.log('handleResuls():');
+                // console.log(data);
                 // debugger;
                 //TODO need to upcate the localstorage user with the local user id for ionic!!!
                 localStorage.setItem(stemcfg.userid, data.id);
@@ -324,15 +318,15 @@ console.log('questCtrl 2');
             // capi(webHost, '/api/Users', 'POST', 'model', 'method', jsonData, afterCreateNow, null, 'swagger');
         }
         function handleExistingUser(data) {
-            console.log('handleExistingUser data: ');
-            console.log(data);
+            // console.log('handleExistingUser data: ');
+            // console.log(data);
             // debugger
             if(typeof data.email !== 'undefined' && data.email === userEmail) {
                 //TODO need to upcate the localstorage user with the local user id for ionic!!!
                 localStorage.setItem(stemcfg.userid, data.id);  //TODO data.id is invalid if the duplicate exsist!??????
                 //NOTES: we will never reach here as the fetch throws error if the user is not found!
                 //do npthing!
-                console.log(userEmail + ' exists locally!');
+                // console.log(userEmail + ' exists locally!');
                 component.afterCreateLocalUser(data);
             } else {
                 createNow(data);
@@ -348,7 +342,7 @@ console.log('questCtrl 2');
     }
 
     component.isAuthenticated = function() {
-        console.log('controllers.js:isAuthenticated webHost [' + webHost + ']');
+        // console.log('controllers.js:isAuthenticated webHost [' + webHost + ']');
         // webHost = 'http://50.28.56.122:3000'; //TODO - just for test - comment this out in production!!!
         // webHost = 'http://localhost:3000'; //TODO - just for test - comment this out in production!!!
         // webHost = 'http://localhost:3064'; //TODO - just for test - comment this out in production!!!
@@ -361,7 +355,7 @@ console.log('questCtrl 2');
         var targetUrl = webHost + "/explorer/swagger.json";
         var msg = "loginCtrl: connecting to openAPI [" + targetUrl + "] ...";
         // document.getElementById("mydata").innerHTML = msg;
-        console.log(msg);
+        // console.log(msg);
         $ionicLoading.show({template: 'Logging in ...'});
 
         function authenticated(data) {
@@ -406,7 +400,7 @@ console.log('questCtrl 2');
             localStorage.setItem(stemcfg.dfuser, user_str);
             // localStorage.setItem(stemcfg.username, json.user.name);
             localStorage.setItem(stemcfg.username, json.user.first_name + json.user.last_name);
-console.log('localStorage.getItem(stemcfg.username set to ' + localStorage.getItem(stemcfg.username));
+// console.log('localStorage.getItem(stemcfg.username set to ' + localStorage.getItem(stemcfg.username));
             // debugger;
             localStorage.setItem(stemcfg.useravatar, user_avatar);
             // console.log(user_avatar);
@@ -426,9 +420,9 @@ console.log('localStorage.getItem(stemcfg.username set to ' + localStorage.getIt
                 };
 
                 function printOwnerId(data) {
-                    console.log('/api/Users = ');
-                    console.log(data);
-                    console.log('owner id = ' + data[0].id);
+                    // console.log('/api/Users = ');
+                    // console.log(data);
+                    // console.log('owner id = ' + data[0].id);
                 }
                 //=== retrieve the logged in user's id
                 // capi(webHost, '/api/Users?filter=' + encodeURIComponent(r), 'GET', 'model', 'method', {}, printOwnerId, null);
@@ -450,8 +444,8 @@ localStorage.setItem(stemcfg.username, json.user.first_name + json.user.last_nam
             }
 
             component.afterCreateLocalUser = function(data) {
-                console.log("if authenticated, dfJSONResponse.obj.status should not be empty: dfJSONResponse.obj.status = ");
-                console.log(StemService.handleFetchResponse(dfJSONResponse).status);
+                // console.log("if authenticated, dfJSONResponse.obj.status should not be empty: dfJSONResponse.obj.status = ");
+                // console.log(StemService.handleFetchResponse(dfJSONResponse).status);
                 // debugger
                 if (StemService.handleFetchResponse(dfJSONResponse).status !== '') {
 
@@ -542,7 +536,7 @@ component.getOwnerAvatar = function(ownerName) {
     var webHost = StemService.getRealHost($location.absUrl(), stemcfg, $stateParams);
     function putCount(data) {
         var currentTotalMessageCount = data.obj.count;
-        console.log('capi: current message count is ' + currentTotalMessageCount);
+        // console.log('capi: current message count is ' + currentTotalMessageCount);
     }
     capi(webHost, '/api/Messages/count', 'GET', 'model', 'method', {}, putCount, null, 'swagger');
 
@@ -550,9 +544,9 @@ component.getOwnerAvatar = function(ownerName) {
         var ret = -1;
         var json = {"where": {"name": userEmail}};
         function printOwnerId(data) {
-            console.log('/api/Users = ');
-            console.log(data);
-            console.log('owner id = ' + data[0].id);
+            // console.log('/api/Users = ');
+            // console.log(data);
+            // console.log('owner id = ' + data[0].id);
         }
         //=== retrieve the logged in user's id
         // capi(webHost, '/api/Users?filter=' + encodeURIComponent(r), 'GET', 'model', 'method', {}, printOwnerId, null);
@@ -575,11 +569,11 @@ component.getOwnerAvatar = function(ownerName) {
             method: 'get'
         }).then(function(response) {
             response.json().then(function(data) {
-              console.log(data);
+            //   console.log(data);
             });
         }).catch(function(err) {
             // Error :(
-            console.log('wallCtrl:handleLikeCount() ' + err);
+            // console.log('wallCtrl:handleLikeCount() ' + err);
         });
     }
 
@@ -613,9 +607,9 @@ component.getOwnerAvatar = function(ownerName) {
     component.getFlagByMessageIdAndOwner = function(data, msgId, ownerId) {
         var ret;
         // debugger
-        console.log("13 =====================> component.getFlagByMessageId: searching in data [");
-        console.log(data);
-        console.log(']  by msgId [' + msgId + '] ownerId [' + ownerId + ']');
+        // console.log("13 =====================> component.getFlagByMessageId: searching in data [");
+        // console.log(data);
+        // console.log(']  by msgId [' + msgId + '] ownerId [' + ownerId + ']');
         var f1, f2;
         for(var i=0; i<data.length; i++) {  //TODO why is data.length is null here????
             if(data[i].messages == msgId) f1 = true;
@@ -863,12 +857,12 @@ json4 = json4.data;  //support fetch
             component.postlabel = stemcfg.replytopiclabel;
             $scope.messageowner = item.owner;
             $scope.messagetype = stemcfg.messagetype1 + component.getTopicId(item);  //TODO need to get the type of the (thread) topic over here
-            console.log('REPLY: message type set to [' + $scope.messagetype + '] $scope.messageowner [' + $scope.messageowner + ']');
+            // console.log('REPLY: message type set to [' + $scope.messagetype + '] $scope.messageowner [' + $scope.messageowner + ']');
         } else {
             component.postlabel = stemcfg.newtopiclabel;
             $scope.messageowner = localStorage.getItem(stemcfg.userid);
             $scope.messagetype = undefined;   //has to be undefined to be treated as a POST!!!
-            console.log('POST: message type set to [' + $scope.messagetype + '] $scope.messageowner [' + $scope.messageowner + ']');
+            // console.log('POST: message type set to [' + $scope.messagetype + '] $scope.messageowner [' + $scope.messageowner + ']');
         }
         $scope.modal.show();
     };
@@ -880,13 +874,13 @@ json4 = json4.data;  //support fetch
     $scope.openReplyTo = function($event, item) {
         $scope.messageowner = item.owner;
         $scope.messagetype = stemcfg.messagetype1 + component.getTopicId(item);  //TODO need to get the type of the (thread) topic over here
-        console.log('message type set to [' + $scope.messagetype + ']');
+        // console.log('message type set to [' + $scope.messagetype + ']');
         $scope.openPopover($event, $scope.messagetype);
     }
 
     $scope.openPopover = function($event, id) {
         $scope.popover.show($event);
-            console.log('controller.js $scope.openPopover id = ' + id);
+            // console.log('controller.js $scope.openPopover id = ' + id);
         };
         $scope.closePopover = function() {
             $scope.popover.hide();
@@ -1045,7 +1039,7 @@ json4 = json4.data;  //support fetch
         // webHost = 'http://localhost:3064'; //TODO - just for test - comment this out in production!!!
         var targetUrl = webHost + "/explorer/swagger.json";
         // var values = component;
-        console.log('wallCtrl controller createMessage() item [' + JSON.stringify(item) + ']');
+        // console.log('wallCtrl controller createMessage() item [' + JSON.stringify(item) + ']');
 // console.log('1.1 <----------------------------------------------');
 
         //swagge2 begin
@@ -1143,7 +1137,7 @@ json2 = oldMessage;
         // debugger
         // if(item.likecount > 0) {
         if(item.loggedinuserliked == 1) {
-            console.log('item.loggedinuserliked = ' + item.loggedinuserliked);
+            // console.log('item.loggedinuserliked = ' + item.loggedinuserliked);
             ret = 'button button-icon icon ion-ios-heart energized icon-left';
             // console.log('controllers.js component.likeStyleByFlagState state 1');
         } else {

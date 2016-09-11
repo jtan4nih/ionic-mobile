@@ -17,9 +17,9 @@ function commonAPI(base_url, uri, action, model, method, jsonData, cb, doneFunc,
         // console.log("doneFunc:");
         // console.log(doneFunc);
         // debugger
-        console.log(">>>>>>>>>>>>>> calling " + uri + " with an HTTP " + action + " ...");
+        // console.log(">>>>>>>>>>>>>> calling " + uri + " with an HTTP " + action + " ...");
         if(typeof mode === 'undefined') {
-console.log("*** http fetch mode ***");
+// console.log("*** http fetch mode ***");
             var payload;
             var temp = '';
             if(action === 'POST' || action === 'PUT') payload = JSON.stringify(jsonData);
@@ -51,11 +51,11 @@ console.log("*** http fetch mode ***");
                     // throw Error(response.statusText);
                 } else 
                 if(typeof response.error !== 'undefined') {
-                    console.log('HTTP fetch request failed', response.error.message);
+                    // console.log('HTTP fetch request failed', response.error.message);
                     if(cb != null) cb(response.error.message); else doneFunc();
                 } else {
                     //=== ALL GOOD!!! :)
-                    console.log('HTTP fetch request succeeded with JSON response', response);
+                    // console.log('HTTP fetch request succeeded with JSON response', response);
                     if(cb != null) cb(response); else doneFunc();
                 }
                 return response;
@@ -81,16 +81,16 @@ console.log("*** http fetch mode ***");
             .then(json)
             .then(handleErrors)
             .then(function(response) {
-                console.log("ok");
+                // console.log("ok");
             }).catch(function(error) {
                 // debugger
-                console.log('HTTP fetch request exception', error);
+                // console.log('HTTP fetch request exception', error);
                 if(cb != null) cb(error); else doneFunc();
 
                 console.log(error);
             });
         } else {
-console.log("*** swagger-client mode ***");
+// console.log("*** swagger-client mode ***");
             if(uri === '/api/Flags' && action === 'GET') {
                 var swagger = new Swagger({
                     url: base_url + '/explorer/swagger.json',
@@ -254,8 +254,8 @@ if(!isRemote(base_url)) {
                         swagger.Threads.Threads_wall(jsonData, {
                             responseContentType: 'application/json'
                         }, function(data) {
-                            console.log("api-helper.js (swagger-client): Threads.Threads_wall returned:");
-                            console.log(data);
+                            // console.log("api-helper.js (swagger-client): Threads.Threads_wall returned:");
+                            // console.log(data);
                             // console.log("get flag --------------------------->doneFunc:");
                             // console.log(doneFunc);
                             if(cb != null) cb(data); else doneFunc();
@@ -271,10 +271,10 @@ if(!isRemote(base_url)) {
                         swagger.Users.Users_isAuthenticated(jsonData, {
                             responseContentType: 'application/json'
                         }, function(data) {
-                            console.log("api-helper.js (swagger-client): Users.Users_isAuthenticated returned:");
-                            console.log(data);
-                            console.log("get flag --------------------------->doneFunc:");
-                            console.log(doneFunc);
+                            // console.log("api-helper.js (swagger-client): Users.Users_isAuthenticated returned:");
+                            // console.log(data);
+                            // console.log("get flag --------------------------->doneFunc:");
+                            // console.log(doneFunc);
                             if(cb != null) cb(data); else doneFunc();
                         }); //end of swagger.Users.Users_isAuthenticated
                     } //end of success
