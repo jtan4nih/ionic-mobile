@@ -10,38 +10,42 @@ angular.module('app.routes', [])
     
   
 
-      .state('menu.questJoin', {
-    url: '/quest_join',
-    views: {
-      'side-menu21': {
-        templateUrl: 'templates/questJoin.html',
-        controller: 'questJoinCtrl'
-      }
-    }
-  })
-
-  .state('questActivity', {
+      .state('menu.questActivity', {
     url: '/quest_activity',
-    templateUrl: 'templates/questActivity.html',
-    controller: 'questActivityCtrl'
-  })
-
-  .state('menu.questJoinConfirm', {
-    url: '/quest_join_confirm',
     views: {
       'side-menu21': {
-        templateUrl: 'templates/questJoinConfirm.html',
-        controller: 'questJoinConfirmCtrl'
+        templateUrl: 'templates/questActivity.html',
+        controller: 'questActivityCtrl'
       }
     }
   })
 
-  .state('menu.questExitConfirm', {
+  .state('menu.questDetails', {
+    url: '/quest_details',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/questDetails.html',
+        controller: 'questDetailsCtrl'
+      }
+    }
+  })
+
+  .state('menu.questExit', {
     url: '/page14',
     views: {
       'side-menu21': {
-        templateUrl: 'templates/questExitConfirm.html',
-        controller: 'questExitConfirmCtrl'
+        templateUrl: 'templates/questExit.html',
+        controller: 'questExitCtrl'
+      }
+    }
+  })
+
+  .state('menu.questHow', {
+    url: '/page16',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/questHow.html',
+        controller: 'questHowCtrl'
       }
     }
   })
@@ -92,10 +96,14 @@ angular.module('app.routes', [])
     }
   })
 
-  .state('powerUpsEdit', {
+  .state('menu.powerUpsEdit', {
     url: '/page9',
-    templateUrl: 'templates/powerUpsEdit.html',
-    controller: 'powerUpsEditCtrl'
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/powerUpsEdit.html',
+        controller: 'powerUpsEditCtrl'
+      }
+    }
   })
 
   .state('menu.newComment', {
@@ -114,6 +122,16 @@ angular.module('app.routes', [])
       'side-menu21': {
         templateUrl: 'templates/newMessage.html',
         controller: 'newMessageCtrl'
+      }
+    }
+  })
+
+  .state('menu.questJoin', {
+    url: '/page18',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/questJoin.html',
+        controller: 'questJoinCtrl'
       }
     }
   })

@@ -18,7 +18,7 @@ angular.module('app', ['ionic', 'jett.ionic.filter.bar', 'app.controllers', 'app
         request: function (config) {
             //weed out loading of views - we just want service requests.
             if (config.url.indexOf('html') == -1) {
-                console.log("HTTP " + config.method + " request: " + config.url);
+                console.log("app.js: HTTP " + config.method + " request: " + config.url);
             }
             return config;
         }

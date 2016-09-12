@@ -31,8 +31,6 @@ Note: a space after -- is required!
 
 Useful Explorer filter:
 
-GET /Audits
-{"where": {"owner": "user1@gmail.com"}}
 GET /Questspowerups
 {"where": {"questsid": 1}}
 {"where": {"powerupsid": 1}}
@@ -49,7 +47,7 @@ References:
 
 https://github.com/urish/angular-moment
 */
-angular.module('app.controllers', ['controller.quests','controller.powerups'])
+angular.module('app.controllers', ['controller.quests','controller.powerups','controller.activity'])
 
 .controller('newMessageCtrl', function($location, $ionicFilterBar, Users, $scope, stemcfg, StemFactory, StemService, $state, $stateParams, capi) {
     StemFactory.store('newMessagesCtrl', $scope);
@@ -259,9 +257,6 @@ angular.module('app.controllers', ['controller.quests','controller.powerups'])
 
 })
 
-.controller('questActivityCtrl', function($location, $scope,StemService,stemcfg) {
-
-})
 
 .controller('loginCtrl', function($ionicPopup, $location, $scope,$state,$stateParams,StemFactory,$ionicLoading,StemService,stemcfg, $ionicHistory, capi) {
     // console.log($stateParams.m);

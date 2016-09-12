@@ -66,6 +66,9 @@ angular.module('app.services', ['angularMoment'])
     getUserId: function(stemcfg) {
         return localStorage.getItem(stemcfg.userid);
     },
+    getUserEmail: function(stemcfg) {
+        return localStorage.getItem(stemcfg.user);
+    },
     getJWTToken: function(stemcfg) {
         return localStorage.getItem(stemcfg.jwt);
     },

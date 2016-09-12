@@ -20,6 +20,7 @@ function commonAPI(base_url, uri, action, model, method, jsonData, cb, doneFunc,
         // console.log(">>>>>>>>>>>>>> calling " + uri + " with an HTTP " + action + " ...");
         if(typeof mode === 'undefined') {
 // console.log("*** http fetch mode ***");
+console.log("api-helper.js: HTTP fetch " + action + " request: " + base_url + uri);
             var payload;
             var temp = '';
             if(action === 'POST' || action === 'PUT') payload = JSON.stringify(jsonData);
