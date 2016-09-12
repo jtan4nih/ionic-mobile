@@ -17,6 +17,10 @@
                 <a ng-click="questJoin.joinQuest(questJoin.id, questJoin.title, questJoin.description, questJoin.how)" id="questJoin-button28" class=" button button-light  button-block icon-right ion-android-arrow-forward ">Join</a>
             </div>
             <div id="questJoin-button-bar4" class=" button-bar "></div>
+<div class="list card" ng-repeat="item in questJoin.items track by $index">
+            <ion-item class="item-icon-left" id="questActivity-list-item14">
+                <i class="icon"></i>{{item.extra}} - <time>{{ item.createdat | amCalendar }}</time></ion-item>
+</div>
         </div>
     </ion-content>
 </ion-view>

@@ -43,28 +43,62 @@ function ($scope, $stateParams) {
         getUsersQuestsPowerUps(StemService.getUserId(stemcfg));
     });
 
+component.exit = function(id) {
+    console.log('exit quests id ' + id);
+    removeIfUsersQuestsExists(id);
+}
+
+function removeIfUsersQuestsExists(id) {
+    // debugger
+    var webHost = StemService.getRealHost($location.absUrl(), stemcfg, $stateParams);
+    var userid = StemService.getUserId(stemcfg);
+    // console.log('removeIfUsersQuestsExists id = ' + id + ' userid = ' + userid);
+    function afterIsUsersQuestsExists(data) {
+        // debugger
+        // console.log(data);
+        if(data.length > 0) {
+            exitUsersQuests(id);
+            console.log('afterIsUsersQuestsExists exit!');
+        } else {
+            console.log('afterIsUsersQuestsExists has already exit this Quests!');
+        }
+    }
+    // var json1 = { 
+    //         where: {
+    //             usersid: userid,
+    //             questsid: id
+    //         }
+    // };
+    // capi(webHost, `/api/Usersquests`, 'GET', 'model', 'method', json1, afterIsUsersQuestsExists, null);
+    Usersquests
+    .find({ filter: { where: { usersid: userid, questsid: id } } })
+    .$promise
+    .then(function(results) {
+        component.items = results;
+        // console.log('questDetailsCtrl 1 size ' + component.items.length);
+        // console.log(component.items);
+        afterIsUsersQuestsExists(component.items);
+    });
+}
+
     component.join = function (id) {
-        // console.log('join quests id ' + id);
-        isUsersQuestsExists(id);
+        console.log('join quests id ' + id);
+        addIfNoUsersQuestsExists(id);
     }
     
-    component.exit = function(id) {
-        // console.log('exit quests id ' + id);
-    }
-
-    function isUsersQuestsExists(id) {
+    function addIfNoUsersQuestsExists(id) {
         // debugger
         var webHost = StemService.getRealHost($location.absUrl(), stemcfg, $stateParams);
         var userid = StemService.getUserId(stemcfg);
-        // console.log('isUsersQuestsExists id = ' + id + ' userid = ' + userid);
+        // console.log('addIfNoUsersQuestsExists id = ' + id + ' userid = ' + userid);
         function afterIsUsersQuestsExists(data) {
             // debugger
             // console.log(data);
             if(data.length == 0) {
                 jointUsersQuests(id);
-                console.log('afterIsUsersQuestsExists joined!');
+                // console.log('afterIsUsersQuestsExists joined!');
             } else {
-                console.log('afterIsUsersQuestsExists has already joined this Quests!');
+                // console.log('afterIsUsersQuestsExists has already joined this Quests!');
             }
         }
         // var json1 = { 
@@ -91,11 +125,11 @@ function ($scope, $stateParams) {
         // console.log('jointUsersQuests typeof id = ' + typeof id);
         function afterJoinUsersQuests(data) {
             if(data.id == id) {
-                console.log('jointUsersQuests success!');
+                // console.log('jointUsersQuests success!');
             } else {
-                console.log('jointUsersQuests failed!');
+                // console.log('jointUsersQuests failed!');
             }
-            console.log(data);
+            // console.log(data);
             // var scope = StemFactory.get('questsPowerUpsCtrl');
             // scope.$apply(function () {
                 // console.log(data);
@@ -233,8 +267,8 @@ function ($scope, $stateParams) {
         function afterUsersQuests(data) {
             component.items = data;
             $ionicLoading.hide();
-            console.log('questJoinCtrl 1 size ' + component.items.length);
-            console.log(component.items);
+            // console.log('questJoinCtrl 1 size ' + component.items.length);
+            // console.log(component.items);
         }
         var json = { 
             "where": {
