@@ -216,6 +216,8 @@ function ($scope, $stateParams) {
         component.description = $stateParams.description;
         component.how = $stateParams.how;
         // console.log('questJoinCtrl component = ' + JSON.stringify(component));
+        
+        getUsersQuests(StemService.getUserId(stemcfg));
     });
 
     component.selectQuestPowerups = function(item) {
@@ -225,7 +227,22 @@ function ($scope, $stateParams) {
         });
     }
     
-    
+    function getUsersQuests(id) {
+        // debugger
+        var webHost = StemService.getRealHost($location.absUrl(), stemcfg, $stateParams);
+        function afterUsersQuests(data) {
+            component.items = data;
+            $ionicLoading.hide();
+            console.log('questJoinCtrl 1 size ' + component.items.length);
+            console.log(component.items);
+        }
+        var json = { 
+            "where": {
+                "usersid": id
+            }
+        };
+        capi(webHost, '/api/Usersquests?filter=' + StemService.toExplorerFilter(json), 'GET', 'model', 'method', json, afterUsersQuests, null);
+    }
 })
 
 .controller('questHomeCtrl', function($ionicPopup, $state, $stateParams, $location, $scope,StemService,stemcfg, $resource, Quests, $ionicLoading) {
