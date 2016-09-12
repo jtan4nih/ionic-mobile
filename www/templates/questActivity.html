@@ -1,19 +1,17 @@
 <ion-view title="Quest - Activity" id="page15">
     <ion-content padding="true" class="has-header">
-        <div class="item item-body" id="questActivity-list-item-container4">
-<div ng-repeat="item in questAct.items track by $index">
-            <ion-list id="questActivity-list16">
-                <ion-item class="item-icon-left" id="questActivity-list-item14">
-                    <i class="icon ion-information"></i>{{item.extra}} - <time>{{ item.createdat | amCalendar }}</time></ion-item>
-            </ion-list>
+        <!--<div class="item item-body" id="questActivity-list-item-container4">-->
+<div class="list card" ng-repeat="item in questAct.items track by $index">
+            <ion-item class="item-icon-left" id="questActivity-list-item14">
+                <i class="icon ion-information"></i>{{item.extra}} - <time>{{ item.createdat | amCalendar }}</time></ion-item>
 </div>
-            <div id="questActivity-button-bar12" class="button-bar"></div>
-            <div id="questActivity-button-bar13" class="button-bar">
-                <a ui-sref="menu.questJoin" id="questActivity-button39" class="button button-light  button-block icon-left ion-android-arrow-back">Back</a>
-                <button id="questActivity-button40" class="button button-light  button-block"></button>
-                <a ui-sref="menu.questDetails" id="questActivity-button41" class="button button-light  button-block"></a>
-            </div>
-            <div id="questActivity-button-bar14" class="button-bar"></div>
-        </div>
+            <!--<div id="questActivity-button-bar12" class="button-bar"></div>-->
+            <!--<div id="questActivity-button-bar13" class="button-bar">-->
+                <!--<a ui-sref="menu.questJoin" id="questActivity-button39" class="button button-light  button-block icon-left ion-android-arrow-back">Back</a>-->
+                <!--<button id="questActivity-button40" class="button button-light  button-block"></button>-->
+                <!--<a ui-sref="menu.questDetails" id="questActivity-button41" class="button button-light  button-block"></a>-->
+            <!--</div>-->
+            <!--<div id="questActivity-button-bar14" class="button-bar"></div>-->
+        <!--</div>-->
     </ion-content>
 </ion-view>

@@ -102,7 +102,7 @@ angular.module('app.controllers', ['controller.quests','controller.powerups','co
     component.id = $state.params.towho;
 
     $scope.$on('$ionicView.enter', function(){
-        $ionicLoading.show({template: `Retrieving all the private messages sent to ${component.id}...`});
+        $ionicLoading.show({template: `Retrieving all the private messages sent to ${component.id} ...`});
         getInbox();
     });
 
@@ -138,11 +138,12 @@ angular.module('app.controllers', ['controller.quests','controller.powerups','co
     StemFactory.store('myMessagesCtrl', $scope);
     StemService.handleInvalidSession($state, $scope, localStorage.getItem(stemcfg.userid), $ionicPopup, $stateParams.m);
     var component = this;
+    component.email = localStorage.getItem(stemcfg.user);
     // console.log($stateParams.towho);
     // console.log($state.params);
 
     $scope.$on('$ionicView.enter', function(){
-        $ionicLoading.show({template: `Retrieving all the private messages sent to ${component.id}...`});
+        $ionicLoading.show({template: `Retrieving all the private messages sent to ${component.id} ...`});
         getItems();
     });
 

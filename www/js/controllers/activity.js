@@ -8,7 +8,7 @@ GET /Audits
 */
 angular.module('controller.activity', [])
 
-.controller('questActivityCtrl', function($location, $ionicFilterBar, Users, $scope, stemcfg, StemFactory, StemService, $state, $stateParams, $ionicPopup, capi) {
+.controller('questActivityCtrl', function($location, $ionicFilterBar, Users, $scope, stemcfg, StemFactory, StemService, $state, $stateParams, $ionicPopup, $ionicLoading, capi) {
     StemService.handleInvalidSession($state, $scope, StemService.getUserId(stemcfg), $ionicPopup, $stateParams.m);
     var component = this;
 
@@ -18,6 +18,8 @@ angular.module('controller.activity', [])
         // component.description = $stateParams.description;
         // component.how = $stateParams.how;
         // console.log('questActivityCtrl item = ' + JSON.stringify(component));
+        $ionicLoading.show({template: `Retrieving all the activities ...`});
+        getUsersQuestsActivity(StemService.getUserEmail(stemcfg));
     });
 
     function getUsersQuestsActivity(id) {
@@ -27,6 +29,7 @@ angular.module('controller.activity', [])
             component.items = data;
             // console.log('questActivityCtrl 1 size ' + component.items.length);
             // console.log(component.items);
+            $ionicLoading.hide();
         }
         var json = { 
             "where": {
@@ -35,7 +38,5 @@ angular.module('controller.activity', [])
         };
         capi(webHost, '/api/Audits?filter=' + StemService.toExplorerFilter(json), 'GET', 'model', 'method', json, afterUsersQuestsActivity, null);
     }
-
-    getUsersQuestsActivity(StemService.getUserEmail(stemcfg));
 
 });

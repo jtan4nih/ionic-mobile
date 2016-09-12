@@ -180,10 +180,12 @@ function ($scope, $stateParams) {
                 component.items = results;
                 // console.log('questsPowerUpsCtrl 1 size ' + component.items.length);
                 // console.log(component.items);
-            });
+                $ionicLoading.hide();
+         });
     }
 
-    $scope.$on('$ionicView.enter', function(){
+    $scope.$on('$ionicView.enter', function() {
+        $ionicLoading.show({template: `Retrieving all the powerups of the quests ...`});
         component.id = $stateParams.id;
         // console.log('questsPowerUpsCtrl component = ' + JSON.stringify(component));
         getQuestsPowerUps(component.id);
@@ -226,11 +228,12 @@ function ($scope, $stateParams) {
     
 })
 
-.controller('questHomeCtrl', function($ionicPopup, $state, $stateParams, $location, $scope,StemService,stemcfg, $resource, Quests) {
+.controller('questHomeCtrl', function($ionicPopup, $state, $stateParams, $location, $scope,StemService,stemcfg, $resource, Quests, $ionicLoading) {
     StemService.handleInvalidSession($state, $scope, StemService.getUserId(stemcfg), $ionicPopup, $stateParams.m);
     // console.log('questHomeCtrl called!');
 
     var component = this;
+    component.email = localStorage.getItem(stemcfg.user);
     // component.items = Quests;
     $scope.items = [];
     function getQuests() {
@@ -241,9 +244,11 @@ function ($scope, $stateParams) {
             .then(function(results) {
                 component.items = results;
                 // console.log('questHomeCtrl 3 size ' + component.items.length);
+                $ionicLoading.hide();
             });
     }
     $scope.$on('$ionicView.enter', function(){
+        $ionicLoading.show({template: `Retrieving all the quests ...`});
         // console.log('questHomeCtrl 2');
         getQuests();
     });
