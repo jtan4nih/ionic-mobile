@@ -49,7 +49,7 @@ https://github.com/urish/angular-moment
 */
 angular.module('app.controllers', ['controller.quests','controller.powerups','controller.activity'])
 
-.controller('newMessageCtrl', function($location, $ionicFilterBar, Users, $scope, stemcfg, StemFactory, StemService, $state, $stateParams, capi) {
+.controller('newMessageCtrl', function($location, $ionicFilterBar, Users, $scope, stemcfg, StemFactory, StemService, $state, $stateParams, $ionicLoading, capi) {
     StemFactory.store('newMessagesCtrl', $scope);
     var component = this;
     var webHost = StemService.getRealHost($location.absUrl(), stemcfg, $stateParams);
@@ -60,6 +60,7 @@ angular.module('app.controllers', ['controller.quests','controller.powerups','co
     component.recipientEmail = $stateParams.email;
 
     component.sendMessage = function(id, name, email) {
+        $ionicLoading.show({template: `Sending message ...`});
         var fromwhoId = localStorage.getItem(stemcfg.userid);
         var fromwhoName = localStorage.getItem(stemcfg.username);
         var fromwhoEmail = localStorage.getItem(stemcfg.user);
@@ -82,6 +83,7 @@ angular.module('app.controllers', ['controller.quests','controller.powerups','co
     component.createMessage = function(json) {
         function afterPrivateMessageCreate(data) {
             // console.log(JSON.stringify(data));
+            $ionicLoading.hide();
             StemService.alert('Message sent to ' + component.recipientName + '!');
         }
 // debugger
@@ -625,6 +627,7 @@ component.getOwnerAvatar = function(ownerName) {
     }
 
     component.saveLike = function(that, itemIndex) {
+        $ionicLoading.show({template: `Saving like ...`});
 
         var webHost = StemService.getRealHost($location.absUrl(), stemcfg, $stateParams);
         var targetUrl = webHost + "/explorer/swagger.json";
@@ -719,6 +722,7 @@ json4 = json4.data;  //support fetch
                                 }
                                 // component.items.splice(itemIndex, 1, data.obj);
                                 component.items.splice(itemIndex, 1, data);  //support fetch
+                                $ionicLoading.hide();
                             });
                         }
                         capi(webHost, '/api/Messages', 'PUT', 'model', 'method', json4, updateItem, null);
@@ -1031,6 +1035,7 @@ json4 = json4.data;  //support fetch
     };
 
     component.createMessage = function(item) {
+        $ionicLoading.show({template: `Posting ...`});
         var webHost = StemService.getRealHost($location.absUrl(), stemcfg, $stateParams);
         // webHost = 'http://50.28.56.122:3000'; //TODO - just for test - comment this out in production!!!
         // webHost = 'http://localhost:3000'; //TODO - just for test - comment this out in production!!!
@@ -1115,6 +1120,8 @@ json2 = oldMessage;
                             $scope.closeModal();
                             // console.log('popover should be closed!');
                             component.reload();  //TODO do we really need to reload????
+                            $ionicLoading.hide();
+
                             // component.loadMoreItems();  //TODO buggy
                             } //end of data.obj.text == item
                         }
