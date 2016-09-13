@@ -260,6 +260,7 @@ function removeIfUsersQuestsExists(id) {
         component.how = $stateParams.how;
         // console.log('questJoinCtrl component = ' + JSON.stringify(component));
         
+        $ionicLoading.show({template: 'Retrieving users quests ...'});
         getUsersQuests(StemService.getUserId(stemcfg));
     });
 
