@@ -59,7 +59,7 @@ function removeIfUsersQuestsExists(id) {
         if(data.length > 0) {
             exitUsersQuests(data[0].id);
             // console.log('afterIsUsersQuestsExists exit!');
-            StemService.alert('Exit! We are sorry :(');
+            StemService.alert('Exit quests!');
         } else {
             StemService.alert('You never join this quests. Nothing is done.');
             // console.log('afterIsUsersQuestsExists has already exit this Quests!');
@@ -131,7 +131,7 @@ StemService.alert('Joined! Congratulation!');
             if(data.id == id) {
                 // console.log('jointUsersQuests success!');
             } else {
-// StemService.alert('Not able to join. We are sorry :(');
+StemService.alert('You have already joined this quests.');
                 // console.log('jointUsersQuests failed!');
             }
             // console.log(data);
