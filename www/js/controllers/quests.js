@@ -28,7 +28,7 @@ function ($scope, $stateParams) {
 
 }])
 
-.controller('questDetailsCtrl', function($location, $scope,StemService,stemcfg, $state, $ionicPopup, $stateParams, Usersquests, capi) {
+.controller('questDetailsCtrl', function($location, $scope,StemService,stemcfg, $state, $ionicPopup, $stateParams, Usersquests, $ionicLoading, capi) {
     StemService.handleInvalidSession($state, $scope, StemService.getUserId(stemcfg), $ionicPopup, $stateParams.m);
     // console.log('questDetailsCtrl called!');
     var component = this;
@@ -44,7 +44,8 @@ function ($scope, $stateParams) {
     });
 
 component.exit = function(id) {
-    console.log('exit quests id ' + id);
+    $ionicLoading.show({template: 'Exiting quests ...'});
+    // console.log('exit quests id ' + id);
     removeIfUsersQuestsExists(id);
 }
 
@@ -59,6 +60,7 @@ function removeIfUsersQuestsExists(id) {
         if(data.length > 0) {
             exitUsersQuests(data[0].id);
             // console.log('afterIsUsersQuestsExists exit!');
+            $ionicLoading.hide();
             StemService.alert('Exit quests!');
         } else {
             StemService.alert('You never join this quests. Nothing is done.');
@@ -85,7 +87,8 @@ function removeIfUsersQuestsExists(id) {
 }
 
     component.join = function (id) {
-        console.log('join quests id ' + id);
+        $ionicLoading.show({template: 'Joining quests ...'});
+        // console.log('join quests id ' + id);
         addIfNoUsersQuestsExists(id);
     }
     
@@ -127,11 +130,11 @@ function removeIfUsersQuestsExists(id) {
         var userid = StemService.getUserId(stemcfg);
         // console.log('jointUsersQuests typeof id = ' + typeof id);
         function afterJoinUsersQuests(data) {
-StemService.alert('Joined! Congratulation!');
             if(data.id == id) {
+                StemService.alert('Joined! Congratulation!');
                 // console.log('jointUsersQuests success!');
             } else {
-StemService.alert('You have already joined this quests.');
+                StemService.alert('You have already joined this quests.');
                 // console.log('jointUsersQuests failed!');
             }
             // console.log(data);
@@ -141,6 +144,7 @@ StemService.alert('You have already joined this quests.');
             // });
         
             // component.items = data;
+            $ionicLoading.hide();
         }
         var json = {
                      id: 0,
