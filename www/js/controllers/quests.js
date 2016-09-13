@@ -96,6 +96,7 @@ function removeIfUsersQuestsExists(id) {
         var webHost = StemService.getRealHost($location.absUrl(), stemcfg, $stateParams);
         var userid = StemService.getUserId(stemcfg);
         // console.log('addIfNoUsersQuestsExists id = ' + id + ' userid = ' + userid);
+        $ionicLoading.show({template: 'Working on the quests ...'});
         function afterIsUsersQuestsExists(data) {
             // debugger
             // console.log(data);
@@ -103,6 +104,7 @@ function removeIfUsersQuestsExists(id) {
                 jointUsersQuests(id);
                 // console.log('afterIsUsersQuestsExists joined!');
             } else {
+                $ionicLoading.hide();
                 StemService.alert('You have already joined this quests.');
                 // console.log('afterIsUsersQuestsExists has already joined this Quests!');
             }
@@ -129,7 +131,6 @@ function removeIfUsersQuestsExists(id) {
         var webHost = StemService.getRealHost($location.absUrl(), stemcfg, $stateParams);
         var userid = StemService.getUserId(stemcfg);
         // console.log('jointUsersQuests typeof id = ' + typeof id);
-        $ionicLoading.show({template: 'Joining quests ...'});
         function afterJoinUsersQuests(data) {
             // debugger
             if(data.questsid == id) {
