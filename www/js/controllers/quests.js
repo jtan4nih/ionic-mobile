@@ -87,7 +87,6 @@ function removeIfUsersQuestsExists(id) {
 }
 
     component.join = function (id) {
-        $ionicLoading.show({template: 'Joining quests ...'});
         // console.log('join quests id ' + id);
         addIfNoUsersQuestsExists(id);
     }
@@ -104,6 +103,7 @@ function removeIfUsersQuestsExists(id) {
                 jointUsersQuests(id);
                 // console.log('afterIsUsersQuestsExists joined!');
             } else {
+                StemService.alert('You have already joined this quests.');
                 // console.log('afterIsUsersQuestsExists has already joined this Quests!');
             }
         }
@@ -129,14 +129,17 @@ function removeIfUsersQuestsExists(id) {
         var webHost = StemService.getRealHost($location.absUrl(), stemcfg, $stateParams);
         var userid = StemService.getUserId(stemcfg);
         // console.log('jointUsersQuests typeof id = ' + typeof id);
+        $ionicLoading.show({template: 'Joining quests ...'});
         function afterJoinUsersQuests(data) {
-            if(data.id == id) {
+            // debugger
+            if(data.questsid == id) {
                 StemService.alert('Joined! Congratulation!');
                 // console.log('jointUsersQuests success!');
-            } else {
-                StemService.alert('You have already joined this quests.');
-                // console.log('jointUsersQuests failed!');
             }
+            // else {
+            //     StemService.alert('You have already joined this quests.');
+            //     // console.log('jointUsersQuests failed!');
+            // }
             // console.log(data);
             // var scope = StemFactory.get('questsPowerUpsCtrl');
             // scope.$apply(function () {
@@ -161,7 +164,7 @@ function removeIfUsersQuestsExists(id) {
         function afterExitUsersQuests(data) {
             // var scope = StemFactory.get('questsPowerUpsCtrl');
             // scope.$apply(function () {
-                console.log(StemService.handleFetchResponse(data));
+                // console.log(StemService.handleFetchResponse(data));
             // });
         
             // component.items = data.obj;
