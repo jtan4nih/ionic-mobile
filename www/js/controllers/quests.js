@@ -57,7 +57,7 @@ function removeIfUsersQuestsExists(id) {
         // debugger
         // console.log(data);
         if(data.length > 0) {
-            exitUsersQuests(id);
+            exitUsersQuests(data[0].id);
             console.log('afterIsUsersQuestsExists exit!');
         } else {
             console.log('afterIsUsersQuestsExists has already exit this Quests!');
@@ -75,8 +75,9 @@ function removeIfUsersQuestsExists(id) {
     .$promise
     .then(function(results) {
         component.items = results;
+        // debugger;
         // console.log('questDetailsCtrl 1 size ' + component.items.length);
-        // console.log(component.items);
+        console.log(component.items);
         afterIsUsersQuestsExists(component.items);
     });
 }
@@ -152,18 +153,18 @@ function removeIfUsersQuestsExists(id) {
         function afterExitUsersQuests(data) {
             // var scope = StemFactory.get('questsPowerUpsCtrl');
             // scope.$apply(function () {
-                console.log(data.obj);
+                console.log(StemService.handleFetchResponse(data));
             // });
         
             // component.items = data.obj;
         }
-        var json = { 
-            "where": {
-                "usersid": userid,
-                "questsid": id
-            }
-        };
-        capi(webHost, `/api/Usersquests`, 'DELETE', 'model', 'method', json, afterExitUsersQuests, null);
+        // var json = { 
+        //     "where": {
+        //         "usersid": userid,
+        //         "questsid": id
+        //     }
+        // };
+        capi(webHost, `/api/Usersquests/${id}`, 'DELETE', 'model', 'method', null, afterExitUsersQuests, null);
     }
 
     function getUsersQuestsPowerUps(id) {
