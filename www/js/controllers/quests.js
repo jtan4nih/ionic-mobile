@@ -60,12 +60,12 @@ function removeIfUsersQuestsExists(id) {
         if(data.length > 0) {
             exitUsersQuests(data[0].id);
             // console.log('afterIsUsersQuestsExists exit!');
-            $ionicLoading.hide();
             StemService.alert('Exit quests!');
         } else {
             StemService.alert('You never join this quests. Nothing is done.');
             // console.log('afterIsUsersQuestsExists has already exit this Quests!');
         }
+        $ionicLoading.hide();
     }
     // var json1 = { 
     //         where: {
