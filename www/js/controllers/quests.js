@@ -58,9 +58,11 @@ function removeIfUsersQuestsExists(id) {
         // console.log(data);
         if(data.length > 0) {
             exitUsersQuests(data[0].id);
-            console.log('afterIsUsersQuestsExists exit!');
+            // console.log('afterIsUsersQuestsExists exit!');
+            StemService.alert('Exit! We are sorry :(');
         } else {
-            console.log('afterIsUsersQuestsExists has already exit this Quests!');
+            StemService.alert('You never join this quests. Nothing is done.');
+            // console.log('afterIsUsersQuestsExists has already exit this Quests!');
         }
     }
     // var json1 = { 
@@ -125,9 +127,11 @@ function removeIfUsersQuestsExists(id) {
         var userid = StemService.getUserId(stemcfg);
         // console.log('jointUsersQuests typeof id = ' + typeof id);
         function afterJoinUsersQuests(data) {
+StemService.alert('Joined! Congratulation!');
             if(data.id == id) {
                 // console.log('jointUsersQuests success!');
             } else {
+// StemService.alert('Not able to join. We are sorry :(');
                 // console.log('jointUsersQuests failed!');
             }
             // console.log(data);
@@ -263,20 +267,15 @@ function removeIfUsersQuestsExists(id) {
     }
     
     function getUsersQuests(id) {
-        // debugger
         var webHost = StemService.getRealHost($location.absUrl(), stemcfg, $stateParams);
         function afterUsersQuests(data) {
-            component.items = data;
+// debugger
+            component.items = data.quests;
             $ionicLoading.hide();
             // console.log('questJoinCtrl 1 size ' + component.items.length);
             // console.log(component.items);
         }
-        var json = { 
-            "where": {
-                "usersid": id
-            }
-        };
-        capi(webHost, '/api/Usersquests?filter=' + StemService.toExplorerFilter(json), 'GET', 'model', 'method', json, afterUsersQuests, null);
+        capi(webHost, '/api/Usersquests/view?userId=' + id, 'GET', 'model', 'method', null, afterUsersQuests, null);
     }
 })
 
