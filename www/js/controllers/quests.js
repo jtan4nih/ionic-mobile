@@ -81,7 +81,7 @@ function removeIfUsersQuestsExists(id) {
         component.items = results;
         // debugger;
         // console.log('questDetailsCtrl 1 size ' + component.items.length);
-        console.log(component.items);
+        // console.log(component.items);
         afterIsUsersQuestsExists(component.items);
     });
 }

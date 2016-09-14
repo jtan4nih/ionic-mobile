@@ -198,7 +198,7 @@ angular.module('app.controllers', ['controller.quests','controller.powerups','co
 
 })
 
-.controller('toMessageCtrl', function($location, $ionicFilterBar, Users, $scope, StemFactory, StemService, $state) {
+.controller('toMessageCtrl', function($location, $ionicFilterBar, Users, $scope, StemFactory, StemService, $state, $ionicLoading, capi) {
 
     StemFactory.store('toMessagesCtrl', $scope);
     var component = this,
@@ -214,8 +214,10 @@ angular.module('app.controllers', ['controller.quests','controller.powerups','co
             items = results;
             // console.log(items);
             component.items = items;
+            $ionicLoading.hide();
         });
     }
+    $ionicLoading.show({template: 'Retrieving the signed in users ...'});
     getUsers();
 
     component.showFilterBar = function () {
