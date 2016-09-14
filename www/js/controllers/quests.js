@@ -284,7 +284,7 @@ function removeIfUsersQuestsExists(id) {
             // console.log('questJoinCtrl 1 size ' + component.items.length);
             // console.log(component.items);
         }
-        capi(webHost, '/api/Usersquests/view?userId=' + id, 'GET', 'model', 'method', null, afterUsersQuests, null);
+        capi(webHost, '/api/Usersquests/quests?userId=' + id, 'GET', 'model', 'method', null, afterUsersQuests, null);
     }
 })
 
