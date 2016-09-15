@@ -139,6 +139,53 @@ component.getOwnerAvatar = function(ownerName) {
         return ret;
     }
 
+    function updateItem(data) {
+        var scope = StemFactory.get('wallCtrl');
+        scope.$apply(function () {
+            //copy all values into data and update only the like count
+            var temp = data.likecount;
+            if(typeof temp === 'undefined') temp = 0;
+            var currentFlag = data.liked;
+            data = component.items[component.itemIndex];
+            data.likecount = temp;
+            // debugger
+            if(currentFlag === 'true') {
+                data.loggedinuserliked = 1;
+            } else {
+                data.loggedinuserliked = 0;
+            }
+            // debugger
+            // component.items.splice(component.itemIndex, 1, data.obj);
+console.log('walls.js updateItem: data [');
+console.log(data);
+console.log(']');
+            component.items.splice(component.itemIndex, 1, data);  //support fetch
+            $ionicLoading.hide();
+        });
+    }
+
+    //=== Not used, yet, as it is buggy!
+    component.saveLike_ = function(that, itemIndex) {
+        $ionicLoading.show({template: `Saving like ...`});
+
+        var webHost = StemService.getRealHost($location.absUrl(), stemcfg, $stateParams);
+
+        component.itemIndex = itemIndex;
+        var messageId = that.item.id;
+        var ownerId;
+        try {
+            ownerId = that.item.owner;  //localStorage.getItem(stemcfg.userid); //data[0].id;
+        } catch(e) {
+            console.log(data);
+            throw e;
+        }
+        var ownerName = that.item.ownerName;  //StemService.getUserName(stemcfg);
+        var json = { messageId: messageId, ownerId: ownerId, ownerName: ownerName };
+
+        capi(webHost, '/api/Threads/saveLike', 'POST', 'model', 'method', json, updateItem, null);
+    }
+
+    //=== Notes: it is not used anymore as it is super slow! Keep this just for reference
     component.saveLike = function(that, itemIndex) {
         $ionicLoading.show({template: `Saving like ...`});
 
@@ -146,6 +193,7 @@ component.getOwnerAvatar = function(ownerName) {
         var targetUrl = webHost + "/explorer/swagger.json";
         // var msg = "wallCtrl:saveLike() connecting to openAPI [" + targetUrl + "] ...";
         // console.log(msg);
+        component.itemIndex = itemIndex;
 
         function saveIt(data) {
             //TODO the owner type need to be updated!
@@ -197,7 +245,7 @@ component.getOwnerAvatar = function(ownerName) {
                         var json4 = { data: '' };
                         // var currentFlag = json3.data.state;
                         var currentFlag = json3.state;  //support http fetch
-
+                        updateItem(data);
                         // var oldMessage = data.obj;
                         var oldMessage = data;  //support http fetch
                         oldMessage.liked = currentFlag?"true":"false";
@@ -208,23 +256,6 @@ component.getOwnerAvatar = function(ownerName) {
                             json4.data.likecount = json4.data.likecount - 1;
                         }
                         json4 = json4.data;  //support fetch
-                        function updateItem(data) {
-                            var scope = StemFactory.get('wallCtrl');
-                            scope.$apply(function () {
-                                //copy all values into data and update only the like count
-                                var temp = data.likecount;
-                                data = component.items[itemIndex];
-                                data.likecount = temp;
-                                if(currentFlag) {
-                                    data.loggedinuserliked = 1;
-                                } else {
-                                    data.loggedinuserliked = 0;
-                                }
-                                // component.items.splice(itemIndex, 1, data.obj);
-                                component.items.splice(itemIndex, 1, data);  //support fetch
-                                $ionicLoading.hide();
-                            });
-                        }
                         capi(webHost, '/api/Messages', 'PUT', 'model', 'method', json4, updateItem, null);
                     }
                     capi(webHost, `/api/Messages/${messageId}`, 'GET', 'model', 'method', {"id": messageId}, updateMessageLikeCount, null);
