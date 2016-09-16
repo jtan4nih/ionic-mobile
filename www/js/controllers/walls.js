@@ -139,6 +139,7 @@ component.getOwnerAvatar = function(ownerName) {
         return ret;
     }
 
+    //=== TODO it is buggy!!! esp on loggedinuserliked
     function updateItem(data) {
         var scope = StemFactory.get('wallCtrl');
         scope.$apply(function () {
@@ -167,7 +168,7 @@ if(currentFlag) {
     }
 
     //=== TODO it is buggy!!! esp on loggedinuserliked
-    component.saveLike = function(that, itemIndex) {
+    component.saveLike_ = function(that, itemIndex) {
         $ionicLoading.show({template: `Saving like ...`});
 
         var webHost = StemService.getRealHost($location.absUrl(), stemcfg, $stateParams);
@@ -190,7 +191,7 @@ if(currentFlag) {
     }
 
     //=== Notes: it is not used anymore as it is super slow! Keep this just for reference
-    component.saveLike_ = function(that, itemIndex) {
+    component.saveLike = function(that, itemIndex) {
         $ionicLoading.show({template: `Saving like ...`});
 
         var webHost = StemService.getRealHost($location.absUrl(), stemcfg, $stateParams);
