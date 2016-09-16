@@ -142,35 +142,39 @@ component.getOwnerAvatar = function(ownerName) {
     function updateItem(data) {
         var scope = StemFactory.get('wallCtrl');
         scope.$apply(function () {
-            //copy all values into data and update only the like count
-            var temp = data.likecount;
-            if(typeof temp === 'undefined') temp = 0;
-            var currentFlag = data.liked;
-            data = component.items[component.itemIndex];
-            data.likecount = temp;
-            // debugger
-            if(currentFlag === 'true') {
-                data.loggedinuserliked = 1;
-            } else {
-                data.loggedinuserliked = 0;
-            }
-            // debugger
+            //=== get the current item based on the items
+            var newItem = data.status?data.status:data; //=== store the final saved item
+            var oldItem = component.items[component.itemIndex];
+//=== copy all values into data and update only the like count
+oldItem.likecount = newItem.likecount;
+// debugger
+var currentFlag = component.itemState === 1?0:1;  //oldItem.state;  //TODO get from flag's state not this!!!
+oldItem.liked = currentFlag?"true":"false";
+if(currentFlag) {
+    oldItem.loggedinuserliked = 1;
+} else {
+    oldItem.loggedinuserliked = 0;
+}
             // component.items.splice(component.itemIndex, 1, data.obj);
-console.log('walls.js updateItem: data [');
-console.log(data);
-console.log(']');
-            component.items.splice(component.itemIndex, 1, data);  //support fetch
+// console.log('walls.js updateItem: newItem [');
+// console.log(newItem);
+// console.log('] oldItem [');
+// console.log(oldItem);
+// console.log(']');
+            component.items.splice(component.itemIndex, 1, oldItem);
             $ionicLoading.hide();
         });
     }
 
-    //=== Not used, yet, as it is buggy!
+    //=== TODO it is buggy!!! esp on loggedinuserliked
     component.saveLike_ = function(that, itemIndex) {
         $ionicLoading.show({template: `Saving like ...`});
 
         var webHost = StemService.getRealHost($location.absUrl(), stemcfg, $stateParams);
 
         component.itemIndex = itemIndex;
+        component.itemState = component.items[component.itemIndex].liked === "true"?1:0;
+
         var messageId = that.item.id;
         var ownerId;
         try {
@@ -194,6 +198,7 @@ console.log(']');
         // var msg = "wallCtrl:saveLike() connecting to openAPI [" + targetUrl + "] ...";
         // console.log(msg);
         component.itemIndex = itemIndex;
+        component.itemState = component.items[component.itemIndex].liked === "true"?1:0;
 
         function saveIt(data) {
             //TODO the owner type need to be updated!
@@ -245,7 +250,25 @@ console.log(']');
                         var json4 = { data: '' };
                         // var currentFlag = json3.data.state;
                         var currentFlag = json3.state;  //support http fetch
-                        updateItem(data);
+                        // updateItem(data);
+                        function updateItem(data) {
+                            var scope = StemFactory.get('wallCtrl');
+                            scope.$apply(function () {
+                                //copy all values into data and update only the like count
+                                var temp = data.likecount;
+                                data = component.items[itemIndex];
+                                data.likecount = temp;
+                                if(currentFlag) {
+                                    data.loggedinuserliked = 1;
+                                } else {
+                                    data.loggedinuserliked = 0;
+                                }
+                                // component.items.splice(itemIndex, 1, data.obj);
+                                component.items.splice(itemIndex, 1, data);  //support fetch
+                                $ionicLoading.hide();
+                            });
+                        }
+
                         // var oldMessage = data.obj;
                         var oldMessage = data;  //support http fetch
                         oldMessage.liked = currentFlag?"true":"false";

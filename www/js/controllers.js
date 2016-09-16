@@ -285,6 +285,7 @@ angular.module('app.controllers', ['controller.walls', 'controller.quests','cont
 
         $ionicHistory.clearCache();
         $ionicHistory.clearHistory();
+        document.getElementById("mydata").innerHTML = "";
     }
     $scope.$on('$ionicView.enter', function(){
         purgeUsersData();
