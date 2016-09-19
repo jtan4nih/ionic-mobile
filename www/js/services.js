@@ -17,6 +17,15 @@ angular.module('app.services', ['angularMoment'])
     //   debugger
       
     //   if(hosttype === 'web') {
+if(hosttype.indexOf('localhost:8043') > -1) {
+    host = 'https://localhost:3043';
+    localStorage.setItem(stemcfg.appmode, 'dev3');
+    localStorage.setItem(stemcfg.apihost, host);
+} else
+if(hosttype.indexOf('amazonaws.com:8043') > -1) {
+    host = 'http://ec2-54-175-194-254.compute-1.amazonaws.com:3043';
+    localStorage.setItem(stemcfg.apihost, host);
+} else
       if(hosttype.indexOf('amazonaws') > -1 || hosttype.indexOf('herokuapp') > -1) {
         host = 'http://ec2-54-175-194-254.compute-1.amazonaws.com:3000';
         localStorage.setItem(stemcfg.apihost, host);
