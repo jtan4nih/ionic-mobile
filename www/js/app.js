@@ -111,7 +111,9 @@ function configure($httpProvider,LoopBackResourceProvider) {
             if(devTier === 'dev') {
                 host = 'http://ec2-54-175-194-254.compute-1.amazonaws.com:3000';  //just a hack!
             } else {
-                host = 'https://ec2-54-175-194-254.compute-1.amazonaws.com:3043';  //just a hack!
+//TODO until "net::ERR_INSECURE_RESPONSE" is resolved with Chrome, can't enable this!                
+// host = 'https://ec2-54-175-194-254.compute-1.amazonaws.com:3043';  //just a hack!
+host = 'http://ec2-54-175-194-254.compute-1.amazonaws.com:3000';  //just a hack!
             }
             // host = apihost;
         } else {
