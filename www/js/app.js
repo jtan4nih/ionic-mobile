@@ -107,7 +107,12 @@ function configure($httpProvider,LoopBackResourceProvider) {
     } else {
         var apihost = localStorage.getItem('apihost') || '';
         if(apihost.trim() !== '') {
-            host = 'http://ec2-54-175-194-254.compute-1.amazonaws.com:3000';  //just a hack!
+            var devTier = localStorage.getItem(stemcfg.appmode);
+            if(devTier === 'dev') {
+                host = 'http://ec2-54-175-194-254.compute-1.amazonaws.com:3000';  //just a hack!
+            } else {
+                host = 'https://ec2-54-175-194-254.compute-1.amazonaws.com:3043';  //just a hack!
+            }
             // host = apihost;
         } else {
             // debugger
