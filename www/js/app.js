@@ -107,7 +107,7 @@ function configure($httpProvider,LoopBackResourceProvider) {
     } else {
         var apihost = localStorage.getItem('apihost') || '';
         if(apihost.trim() !== '') {
-            var devTier = localStorage.getItem(stemcfg.appmode);
+            var devTier = localStorage.getItem('appmode');
             if(devTier === 'dev') {
                 host = 'http://ec2-54-175-194-254.compute-1.amazonaws.com:3000';  //just a hack!
             } else {
