@@ -35,7 +35,7 @@ GET /Questspowerups
 {"where": {"questsid": 1}}
 {"where": {"powerupsid": 1}}
 GET /Users
-{"where": {"name": "user1@gmail.com"}}
+{"where": {"email": "user1@gmail.com"}}
 GET /Quests
 {"include": "powerups"}
 GET /Powerups
