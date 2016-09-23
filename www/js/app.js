@@ -94,16 +94,27 @@ function configure($httpProvider,LoopBackResourceProvider) {
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
     $httpProvider.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem("stem2token");
 
+// debugger
     var host;
     var mode = localStorage.getItem('appmode');
+    if(mode === 'dev3') {
+    // if($location.absUrl().indexOf('3064') > -1) {
+        host = 'https://localhost:3043';
+    } else
     if(mode === 'dev') {
     // if($location.absUrl().indexOf('3064') > -1) {
         host = 'http://localhost:3064';
     } else {
         var apihost = localStorage.getItem('apihost') || '';
-// debugger
         if(apihost.trim() !== '') {
-            host = 'http://ec2-54-175-194-254.compute-1.amazonaws.com:3000';  //just a hack!
+            var devTier = localStorage.getItem('appmode');
+            if(devTier === 'dev') {
+                host = 'http://ec2-54-175-194-254.compute-1.amazonaws.com:3000';  //just a hack!
+            } else {
+//TODO until "net::ERR_INSECURE_RESPONSE" is resolved with Chrome, can't enable this!                
+// host = 'https://ec2-54-175-194-254.compute-1.amazonaws.com:3043';  //just a hack!
+host = 'http://ec2-54-175-194-254.compute-1.amazonaws.com:3000';  //just a hack!
+            }
             // host = apihost;
         } else {
             // debugger
