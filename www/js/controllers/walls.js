@@ -462,16 +462,13 @@ if(currentFlag) {
         return ret;
     };
 
-    component.getStyle = function(item) {
-        var ret = {height: '300px'};
+    // component.getStyle = function(item) {
+    //     var ret = {'background-color': '#00E000'};
 
-        if(component.isTopicOwner(item)) {
-            ret = {height: '300px'};
-        }
-
-        // console.log('controllers.js:component.getItemCSSClass [' + ret + '] item.type [' + item.type + "]");
-    //   return ret;  //Notes: @mayowa uncomment this to see the gap
-    };
+    //     if(component.isTopicOwner(item)) {
+    //         ret = {'background-color': '#00E000'};
+    //     }
+    // };
 
     component.isTopicOwner = function(item) {
         var ret = false;

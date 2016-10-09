@@ -11,20 +11,21 @@
         </button>
     
         <div ng-repeat="item in wall.items">
-            <ion-item ng-if="wall.isTopicOwner(item)" ng-style="wall.getStyle(item)" class="item-avatar item-icon-right item-text-wrap">
+            <ion-item ng-if="wall.isTopicOwner(item)" class="item item-divider item-borderless"></ion-item>
+            <ion-item ng-if="wall.isTopicOwner(item)" ng-style="wall.getStyle(item)" class="item item-thumbnail-left item-text-wrap item-borderless">
                 <img class="item-text-wrap" ng-src="{{wall.getOwnerAvatar(item.ownerName)}}">
                 <h2>{{item.ownerName}}</h2>
                 <p><time>{{ item.createdat | amCalendar }}</time></p>
                 <p>{{item.text}}</p>
             </ion-item>
-            <ion-item ng-if="wall.isTopicOwner(item)" class="item item-icon-left item-icon-right" href="#" ng-click="goToNextSlide()">
+            <ion-item ng-if="wall.isTopicOwner(item)" class="item item-avatar item-icon-left item-icon-right item-borderless">
                 <i ng-click="wall.saveLike(this, $index)" ng-class="wall.getStyleByFlagState(item, $index)">
                     <span ng-show="item.likecount == 1" class="subdued" >{{item.likecount>0?item.likecount+' like':''}}</span><span ng-show="item.likecount > 1" class="subdued">{{item.likecount>0?item.likecount+' likes':''}}</span>
                 </i>
-                <i ng-if="wall.isTopicOwner(item)" ng-click="openModal(item)" class="button button-icon icon icon-right ion-reply">
+                <i ng-if="wall.isTopicOwner(item)" ng-click="openModal(item)" class="button button-icon icon icon-right ion-reply ion-arrow-right-a">
                 </i>
             </ion-item>
-            <ion-item ng-if="!wall.isTopicOwner(item)" ng-style="wall.getStyle(item)" class="item-avatar item-icon-right item-text-wrap">
+            <ion-item id="wall-comment" ng-if="!wall.isTopicOwner(item)" class="item item-avatar item-icon-right item-text-wrap item-borderless">
                 <img class="item-text-wrap" ng-src="{{wall.getOwnerAvatar(item.ownerName)}}">
                 <h2>{{item.ownerName}}</h2>
                 <p><time>{{ item.createdat | amCalendar }}</time></p>
