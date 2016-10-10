@@ -109,7 +109,7 @@ function configure($httpProvider,LoopBackResourceProvider) {
         if(apihost.trim() !== '') {
             var devTier = localStorage.getItem('appmode');
             if(devTier === 'dev2') {
-                host = 'https://serene-thicket-13083.herokuapp.com:3000';
+                host = 'https://polar-cliffs-89059.herokuapp.com:3043';
             } else
             if(devTier === 'dev3') {
                 host = 'http://ec2-54-175-194-254.compute-1.amazonaws.com:3000';  //just a hack!

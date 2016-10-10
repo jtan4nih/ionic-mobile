@@ -27,7 +27,7 @@ if(hosttype.indexOf('amazonaws.com:8043') > -1) {
     localStorage.setItem(stemcfg.apihost, host);
 } else
 if(hosttype.indexOf('herokuapp') > -1) {
-    host = 'https://serene-thicket-13083.herokuapp.com:3000';
+    host = 'https://polar-cliffs-89059.herokuapp.com:3043';
     localStorage.setItem(stemcfg.appmode, 'dev2');
     localStorage.setItem(stemcfg.apihost, host);
 } else
