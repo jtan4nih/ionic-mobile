@@ -26,7 +26,12 @@ if(hosttype.indexOf('amazonaws.com:8043') > -1) {
     host = 'https://ec2-54-175-194-254.compute-1.amazonaws.com:3043';
     localStorage.setItem(stemcfg.apihost, host);
 } else
-      if(hosttype.indexOf('amazonaws') > -1 || hosttype.indexOf('herokuapp') > -1) {
+if(hosttype.indexOf('herokuapp') > -1) {
+    host = 'https://serene-thicket-13083.herokuapp.com:3000';
+    localStorage.setItem(stemcfg.appmode, 'dev2');
+    localStorage.setItem(stemcfg.apihost, host);
+} else
+      if(hosttype.indexOf('amazonaws') > -1) {
         host = 'http://ec2-54-175-194-254.compute-1.amazonaws.com:3000';
         localStorage.setItem(stemcfg.apihost, host);
       } else

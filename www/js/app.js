@@ -108,12 +108,15 @@ function configure($httpProvider,LoopBackResourceProvider) {
         var apihost = localStorage.getItem('apihost') || '';
         if(apihost.trim() !== '') {
             var devTier = localStorage.getItem('appmode');
-            if(devTier === 'dev') {
+            if(devTier === 'dev2') {
+                host = 'https://serene-thicket-13083.herokuapp.com:3000';
+            } else
+            if(devTier === 'dev3') {
                 host = 'http://ec2-54-175-194-254.compute-1.amazonaws.com:3000';  //just a hack!
             } else {
-//TODO until "net::ERR_INSECURE_RESPONSE" is resolved with Chrome, can't enable this!                
-// host = 'https://ec2-54-175-194-254.compute-1.amazonaws.com:3043';  //just a hack!
-host = 'http://ec2-54-175-194-254.compute-1.amazonaws.com:3000';  //just a hack!
+                //TODO until "net::ERR_INSECURE_RESPONSE" is resolved with Chrome, can't enable this!                
+                // host = 'https://ec2-54-175-194-254.compute-1.amazonaws.com:3043';  //just a hack!
+                host = 'http://ec2-54-175-194-254.compute-1.amazonaws.com:3000';  //just a hack!
             }
             // host = apihost;
         } else {
