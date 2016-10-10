@@ -56,14 +56,14 @@ describe('reply_msg_spec.js: Ionic Web Tests', function () {
         browser.sleep(3000);
         expect($('#wall-button11').getText()).toBe(EXPECTED_POST_BUTTON);
         // expect($('#wall-button10').getText()).toContain('Reply to');
-        expect(element.all(by.css('.wall-reply')).get(0).isDisplayed()).toBeTruthy();
-        expect(element.all(by.css('.wall-reply')).get(1).isDisplayed()).toBeTruthy();
+        expect(element.all(by.css('.ion-reply')).get(0).isDisplayed()).toBeTruthy();
+        expect(element.all(by.css('.ion-reply')).get(1).isDisplayed()).toBeTruthy();
         // expect(element.all(by.css('.wall-reply')).get(2).isDisplayed()).toBeTruthy();
         //TODO the above are incorrect, the following should work but didn't
         // expect($$('.wall-reply').length).toEqual(3);
     
         // var reply1selector = 'ion-content > div > ion-list:nth-child(3) > div > ion-item.item.ng-binding';  //pick the first reply to button
-        var reply1 = element.all(by.css('.wall-reply')).get(0);
+        var reply1 = element.all(by.css('.ion-reply')).get(0);
 
         //=== clicking the Reply to first time with the first message
         reply1.click().then(function() {

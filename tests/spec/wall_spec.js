@@ -61,6 +61,7 @@ describe('wall_spec.js: Ionic Web Tests', function () {
         //=== ensuring sorted orders are correct
 var tempSel;
 var textSel = '#page7 > ion-content > div.scroll.padding > div.collection-repeat-container > div:nth-child({{}}) > div > ion-item.item-avatar.item-icon-right.item-text-wrap.item > p.ng-binding';
+// var textSel = 'body > div.modal-backdrop.active > div.modal-wrapper > ion-modal-view > ion-content > div.scroll > div.scroll > div > textarea';
 // browser.pause();
 
 tempSel = textSel.replace('{{}}', '1');
@@ -89,8 +90,8 @@ expect($(tempSel).getText()).toContain('comment 1');
         // expect($('#wall-button9').getText()).toBe('LOAD NEXT');
 // return
 
-var reply1selector = ".wall-reply";
-var reply1 = element.all(by.css('.wall-reply')).get(0);
+var reply1selector = ".ion-reply";
+var reply1 = element.all(by.css('.ion-reply')).get(0);
 
         //=== clicking the Reply to first time with the first message
         reply1.click().then(function() {
@@ -106,7 +107,7 @@ var reply1 = element.all(by.css('.wall-reply')).get(0);
 
 //TODO Failed: element not visible after this line!!!
 browser.pause();
-reply1 = $$('.wall-reply').get(0);
+reply1 = $$('.ion-reply').get(0);
 reply1.click().then(function() {
 browser.sleep(800);
 return
