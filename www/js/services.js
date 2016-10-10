@@ -27,7 +27,7 @@ if(hosttype.indexOf('amazonaws.com:8043') > -1) {
     localStorage.setItem(stemcfg.apihost, host);
 } else
 if(hosttype.indexOf('herokuapp') > -1) {
-    host = 'https://polar-cliffs-89059.herokuapp.com:3043';
+    host = 'https://polar-cliffs-89059.herokuapp.com';
     localStorage.setItem(stemcfg.appmode, 'dev2');
     localStorage.setItem(stemcfg.apihost, host);
 } else
