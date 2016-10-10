@@ -30,6 +30,9 @@
                 <h2>{{item.ownerName}}</h2>
                 <p><time>{{ item.createdat | amCalendar }}</time></p>
                 <p>{{item.text}}</p>
+                <i ng-click="wall.saveLike(this, $index)" ng-class="wall.getStyleByFlagState(item, $index)">
+                    <span ng-show="item.likecount == 1" class="subdued" >{{item.likecount>0?item.likecount+' like':''}}</span><span ng-show="item.likecount > 1" class="subdued">{{item.likecount>0?item.likecount+' likes':''}}</span>
+                </i>
             </ion-item>
         </div>
 
