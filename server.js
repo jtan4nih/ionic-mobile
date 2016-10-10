@@ -29,14 +29,14 @@ app.use(function (req, res, next) {
 // app.set('port', process.env.PORT || 8080);  //NB: 8080 is the default port - DO NOT forget to change the baseUrl inside protractor.conf.js if the default port is changed!
 app.set('port', process.env.PORT || 8043);  //NB: 8080 is the default port - DO NOT forget to change the baseUrl inside protractor.conf.js if the default port is changed!
 var server;
-if(process.env.PORT == 8080) {
+// if(process.env.PORT == 8080) {
     server = app.listen(app.get('port'), function () {
         console.log('Ionic Web Server listening on port ' + app.get('port'));
     });
-} else {
-    server = https.createServer(options, app).listen(app.get('port'), function () {
-        console.log('Ionic Web Server listening on secured port ' + app.get('port'));
-    });
-}
+// } else {
+//     server = https.createServer(options, app).listen(app.get('port'), function () {
+//         console.log('Ionic Web Server listening on secured port ' + app.get('port'));
+//     });
+// }
 exports.app = app;
 exports.server = server;
