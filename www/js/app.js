@@ -39,7 +39,7 @@ angular.module('app', ['ionic', 'jett.ionic.filter.bar', 'app.controllers', 'app
     };
 })
 
-.run(function($ionicPlatform, amMoment) {
+.run(['$ionicPlatform', 'amMoment', function($ionicPlatform, amMoment) {
     amMoment.changeTimezone('Europe/Paris');
 
     $ionicPlatform.ready(function() {
@@ -53,7 +53,7 @@ angular.module('app', ['ionic', 'jett.ionic.filter.bar', 'app.controllers', 'app
           StatusBar.styleDefault();
         }
     });
-})
+}])
 
 .constant("stemcfg", {
     "newtopiclabel": "What's Happening?",
