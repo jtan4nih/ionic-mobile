@@ -64,9 +64,11 @@ var textSel = '#page7 > ion-content > div.scroll.padding > div.collection-repeat
 // var textSel = 'body > div.modal-backdrop.active > div.modal-wrapper > ion-modal-view > ion-content > div.scroll > div.scroll > div > textarea';
 // browser.pause();
 
-tempSel = textSel.replace('{{}}', '1');
+// tempSel = textSel.replace('{{}}', '1');
+tempSel = '.walltopicitemtext.ng-binding';
 expect($(tempSel).getText()).toContain('first topic - 1 comment');
-tempSel = textSel.replace('{{}}', '2');
+// tempSel = textSel.replace('{{}}', '2');
+tempSel = '.wallcommentitemtext.ng-binding';
 expect($(tempSel).getText()).toContain('comment 1');
         // tempSel = textSel.replace('{{}}', '3');
         // expect($(tempSel).getText()).toContain('second topic - two comments');

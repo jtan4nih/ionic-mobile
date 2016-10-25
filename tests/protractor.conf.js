@@ -17,6 +17,7 @@ exports.config = {
   framework: 'jasmine',
 
   directConnect: true,
+  chromeDriver: 'C:/Users/jim/my-new-project/test/pro/chromedriver225.exe',
 
   // -----------------------------------------------------------------
   // Selenium Setup: An existing Selenium standalone server.

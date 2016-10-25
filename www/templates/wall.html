@@ -16,10 +16,10 @@
                 <img class="item-text-wrap" ng-src="{{wall.getOwnerAvatar(item.ownerName)}}">
                 <h2>{{item.ownerName}}</h2>
                 <p><time>{{ item.createdat | amCalendar }}</time></p>
-                <p>{{item.text}}</p>
+                <p class="walltopicitemtext">{{item.text}}</p>
             </ion-item>
             <ion-item ng-if="wall.isTopicOwner(item)" class="item item-avatar item-icon-left item-icon-right item-borderless">
-                <i ng-click="wall.saveLike(this, $index)" ng-class="wall.getStyleByFlagState(item, $index)">
+                <i class="savelike1" ng-click="wall.saveLike(this, $index)" ng-class="wall.getStyleByFlagState(item, $index)">
                     <span ng-show="item.likecount == 1" class="subdued" >{{item.likecount>0?item.likecount+' like':''}}</span><span ng-show="item.likecount > 1" class="subdued">{{item.likecount>0?item.likecount+' likes':''}}</span>
                 </i>
                 <i ng-if="wall.isTopicOwner(item)" ng-click="openModal(item)" class="button button-icon icon icon-right ion-reply ion-arrow-right-a">
@@ -29,8 +29,8 @@
                 <img class="item-text-wrap" ng-src="{{wall.getOwnerAvatar(item.ownerName)}}">
                 <h2>{{item.ownerName}}</h2>
                 <p><time>{{ item.createdat | amCalendar }}</time></p>
-                <p>{{item.text}}</p>
-                <i ng-click="wall.saveLike(this, $index)" ng-class="wall.getStyleByFlagState(item, $index)">
+                <p class="wallcommentitemtext">{{item.text}}</p>
+                <i class="savelike2" ng-click="wall.saveLike(this, $index)" ng-class="wall.getStyleByFlagState(item, $index)">
                     <span ng-show="item.likecount == 1" class="subdued" >{{item.likecount>0?item.likecount+' like':''}}</span><span ng-show="item.likecount > 1" class="subdued">{{item.likecount>0?item.likecount+' likes':''}}</span>
                 </i>
             </ion-item>

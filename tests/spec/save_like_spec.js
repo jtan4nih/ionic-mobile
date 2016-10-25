@@ -48,7 +48,9 @@ describe('save_like_spec.js: Ionic Web Tests', function () {
     console.log('********************* IF YOU ARE RUNNING THIS THE FIRST TIME, IT MIGHT TIME OUT DUE TO SERVICE COLD START AND YOU JUST NEED TO RUN THIS TEST AGAIN AND IT SHOULD WORK! LOL ********************* ');
     browser.sleep(3000);
 // browser.pause();
-    var likeSelector = "#page7 > ion-content > div.scroll.padding > div.collection-repeat-container > div:nth-child(1) > div > ion-item:nth-child(2) > i";
+    //=== pick the first topic like icon
+    var likeSelector = '.savelike1:nth-child(1)';
+    // var likeSelector = "#page7 > ion-content > div.scroll.padding > div.collection-repeat-container > div:nth-child(1) > div > ion-item:nth-child(2) > i";
     element(by.css(likeSelector)).click().then(function() {
         browser.sleep(800);
         expect($(likeSelector).getText()).toBe('1 like');
