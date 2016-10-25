@@ -1,3 +1,3 @@
 set NODIST_NODE_MIRROR=http://nodejs.serverpals.com/dist
 
-nodist use 6
+nodist use 6.6.0

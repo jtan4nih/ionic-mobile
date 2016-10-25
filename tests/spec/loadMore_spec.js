@@ -38,9 +38,9 @@ describe('loadMore_spec.js: Ionic Web Tests', function () {
     expect(el.isDisplayed()).toBe(true);
     element(by.css('#loginid')).sendKeys(loginid);
     element(by.css('#password')).sendKeys(password
-      // + webdriver.Key.RETURN
+      // + protractor.Key.RETURN
     );
-    browser.sleep(3000);
+    // browser.sleep(3000);
     element(by.css('#login-button1')).click().then(function() {
       browser.sleep(3000);
       browser.getCurrentUrl().then(function(url) {

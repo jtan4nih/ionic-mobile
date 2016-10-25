@@ -13,12 +13,12 @@ function isRemote(host) {
     return ret;
 }
 
-function commonAPI(base_url, uri, action, model, method, jsonData, cb, doneFunc, mode) {
+function commonAPI(base_url, uri, action, model, method, jsonData, cb, doneFunc, mode, jwt, localStorage1) {
         // console.log("doneFunc:");
         // console.log(doneFunc);
         // debugger
         // console.log(">>>>>>>>>>>>>> calling " + uri + " with an HTTP " + action + " ...");
-        if(typeof mode === 'undefined') {
+        if(typeof mode === 'undefined' || mode.trim() === '' || mode === null) {
 // console.log("*** http fetch mode ***");
 console.log("api-helper.js: HTTP fetch " + action + " request: " + base_url + uri);
             var payload;
@@ -70,14 +70,23 @@ console.log("api-helper.js: HTTP fetch " + action + " request: " + base_url + ur
                 return ret;
             }
 
+            var finalHeader = {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + (localStorage1 && localStorage1.getItem('stem2token')) || (localStorage && localStorage.getItem('stem2token'))
+            };
+            if(typeof jwt !== 'undefined') {
+              finalHeader = {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'authorization': 'Bearer ' + jwt
+              };
+            } 
+
             fetch(base_url + uri, {
               method: action,
               // mode: 'no-cors',
-              headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + localStorage.getItem('stem2token')
-              },
+              headers: finalHeader,
               body: payload
             })
             .then(json)
@@ -320,8 +329,11 @@ var fetch = require('node-fetch');
 var app = module.exports = {
 
     //=== high level convenient method
-    api: function(base_url, uri, action, model, method, jsonData, cb, doneFunc, mode) {
-        commonAPI(base_url, uri, action, model, method, jsonData, cb, doneFunc, mode);
+    api: function(base_url, uri, action, model, method, jsonData, cb, doneFunc, mode, jwt) {
+        var localStorage = {};
+        localStorage.getItem = function(key) {
+        }
+        commonAPI(base_url, uri, action, model, method, jsonData, cb, doneFunc, mode, jwt, localStorage);
     } //api end
 
 }; //api module.exports end
