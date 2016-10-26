@@ -88,7 +88,42 @@ describe('Controller: newMessageCtrl', function () {
 	});
 
 	// Specs here
-	it('should return a property value', function () {
+	it('should be able to send message', function () {
+		var url = 'undefined/api/UsersThreads/sendmessage';
+    	// var httpResponse = [{ "stuffId": 1 }, { "stuffId": 2 }];
+	 //    httpBackend.whenPOST(url).respond(200, respond(function(method, url, data, headers) {
+		// 	console.log("POST -> " + url);
+
+		// 	return [200, 'SUCCESS!!'];
+		// });
+
+		// expect($scope.foo).toBe('bar');
+		var component = newMessageCtrl;
+		var id = 1;
+		var name = 'test';
+		var email = 'user1@gmail.com';
+        var json = {
+            id: 0,
+            fromwhoId: 'fromwhoId',
+            fromwhoName: name,
+            fromwhoEmail: 'fromwhoEmail',
+            towhoId: id,
+            towhoName: 'towhoName',
+            towhoEmail: email,
+            text: 'text from karma test'
+        };
+		component.createMessage(json);
+    	// httpBackend.flush();
+    	// httpBackend.expectPOST('undefined/api/UsersThreads/sendmessage').respond([]);
+		// httpBackend.verifyNoOutstandingExpectation();
+		// httpBackend.verifyNoOutstandingRequest();
+
+		// request = jasmine.Ajax.requests.mostRecent();
+		// request.respondWith({ status: 200, responseText: "Oh yeah!" });
+
+	});
+
+	it('should be able to send message', function () {
 		var url = 'undefined/api/UsersThreads/sendmessage';
     	// var httpResponse = [{ "stuffId": 1 }, { "stuffId": 2 }];
 	 //    httpBackend.whenPOST(url).respond(200, respond(function(method, url, data, headers) {
@@ -123,10 +158,5 @@ describe('Controller: newMessageCtrl', function () {
 
 	});
 	
-	/*
-	it('should return a method value', function () {
-		expect($scope.baz()).toBe('qux');
-	});
-	*/
 
 });
