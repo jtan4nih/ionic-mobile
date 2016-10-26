@@ -103,11 +103,6 @@ angular.module('app.controllers', ['controller.walls', 'controller.quests','cont
     // console.log($state.params.towho);
     component.id = $state.params.towho;
 
-    $scope.$on('$ionicView.enter', function(){
-        $ionicLoading.show({template: `Retrieving all the private messages sent to ${component.id} ...`});
-        getInbox();
-    });
-
     function populateInbox(results) {
         // console.log(results);
         component.items = [];
@@ -133,6 +128,10 @@ angular.module('app.controllers', ['controller.walls', 'controller.quests','cont
         //TODO
     } //end of component.loadMoreItems
 
+    $scope.$on('$ionicView.enter', function(){
+        $ionicLoading.show({template: `Retrieving all the private messages sent to ${component.id} ...`});
+        getInbox();
+    });
 
 })
 

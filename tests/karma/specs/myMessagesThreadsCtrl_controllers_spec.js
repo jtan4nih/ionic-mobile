@@ -38,7 +38,11 @@ describe('Controller: myMessagesThreadsCtrl', function () {
 			// });
 			// $provide.provider('Usersthreads', function () {
 			// 	this.$get = function () {
-			// 		return {};
+			// 		return {
+			// 			then: function (callback) {
+		                //     return callback({'foo' : "bar"});
+		                // }
+			// 		};
 			// 	};
 			// });
 			// $provide.provider('$ionicFilterBar', function () {
@@ -74,18 +78,15 @@ describe('Controller: myMessagesThreadsCtrl', function () {
 	it('items should have some values', function () {
 		// expect($scope.foo).toBe('bar');
 		// window.getInbox();
-		spyOn(Usersthreads, 'inbox');
-		spyOn(window, 'getInbox');
-	    $rootScope.$broadcast('$ionicView.enter');
-	    // expect(Usersthreads.inbox).toHaveBeenCalled();
-	    expect(myMessagesThreadsCtrl.getInbox).toHaveBeenCalled();
-		// expect(myMessagesThreadsCtrl.items).toBe([]);
-	});
 
-	/*
-	it('should return a method value', function () {
-		expect($scope.baz()).toBe('qux');
+		spyOn($rootScope, '$broadcast');
+		// spyOn(Usersthreads, 'inbox');
+	    $scope.$broadcast('$ionicView.enter');
+		$scope.$apply();
+
+		expect($rootScope.$broadcast).toHaveBeenCalledWith('$ionicView.enter');
+	    // expect(Usersthreads.inbox).toHaveBeenCalled();
+		expect(myMessagesThreadsCtrl.items).toBe(undefined);
 	});
-	*/
 
 });
