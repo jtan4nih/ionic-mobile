@@ -3,12 +3,17 @@
 describe('Controller: newMessageCtrl', function () {
 
 	var $scope, newMessageCtrl, StemFactory, capi, StemService, $ionicLoading, $stateParams, $state, Users, $ionicFilterBar, $location, stemcfg;
+	var httpBackend;
+	var request;
 
 	beforeEach(function () {
-
 		// module('app.controllers');
 		// module('app.services');
 		module('app');
+		module('ngMockE2E');
+
+		// window.fetch = undefined;
+  // 		jasmine.Ajax.install();
 
 		module(function ($provide) {
 			// $provide.factory('StemFactory', function () {
@@ -21,10 +26,13 @@ describe('Controller: newMessageCtrl', function () {
 			// 	return {
 			// 	}
 			// });
-			// $provide.service('StemService', function () {
-			// 	return {
-			// 	}
-			// });
+			$provide.service('StemService', function () {
+				return {
+				    getRealHost: function(_absUrl, _stemcfg, _stateParams) {
+				    	return "http://localhost:3011";
+				    }
+				}
+			});
 			// $provide.provider('$ionicLoading', function () {
 			// 	this.$get = function () {
 			// 		return {};
@@ -58,7 +66,7 @@ describe('Controller: newMessageCtrl', function () {
 			$provide.constant('stemcfg', '');
 		});
 
-		inject(function ($controller, _StemFactory_, _capi_, _StemService_, _$ionicLoading_, _$stateParams_, _$state_, _Users_, _$ionicFilterBar_, _$location_, _stemcfg_) {
+		inject(function ($controller, _StemFactory_, _capi_, _StemService_, _$ionicLoading_, _$stateParams_, _$state_, _Users_, _$ionicFilterBar_, _$location_, _stemcfg_, $httpBackend) {
 			$scope = {};
 			StemFactory = _StemFactory_;
 			capi = _capi_;
@@ -70,6 +78,7 @@ describe('Controller: newMessageCtrl', function () {
 			$ionicFilterBar = _$ionicFilterBar_;
 			$location = _$location_;
 			stemcfg = _stemcfg_;
+			httpBackend = $httpBackend;
 
 			newMessageCtrl = $controller('newMessageCtrl', {
 				$scope: $scope
@@ -80,6 +89,14 @@ describe('Controller: newMessageCtrl', function () {
 
 	// Specs here
 	it('should return a property value', function () {
+		var url = 'undefined/api/UsersThreads/sendmessage';
+    	// var httpResponse = [{ "stuffId": 1 }, { "stuffId": 2 }];
+	 //    httpBackend.whenPOST(url).respond(200, respond(function(method, url, data, headers) {
+		// 	console.log("POST -> " + url);
+
+		// 	return [200, 'SUCCESS!!'];
+		// });
+
 		// expect($scope.foo).toBe('bar');
 		var component = newMessageCtrl;
 		var id = 1;
@@ -96,6 +113,14 @@ describe('Controller: newMessageCtrl', function () {
             text: 'text from karma test'
         };
 		component.createMessage(json);
+    	// httpBackend.flush();
+    	// httpBackend.expectPOST('undefined/api/UsersThreads/sendmessage').respond([]);
+		// httpBackend.verifyNoOutstandingExpectation();
+		// httpBackend.verifyNoOutstandingRequest();
+
+		// request = jasmine.Ajax.requests.mostRecent();
+		// request.respondWith({ status: 200, responseText: "Oh yeah!" });
+
 	});
 	
 	/*

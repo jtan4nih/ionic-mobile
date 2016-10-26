@@ -16,6 +16,7 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
+        'node_modules/whatwg-fetch/fetch.js',
         '../../www/lib/ionic/js/ionic.bundle.js',
         '../../www/lib/ionic-filter-bar/dist/ionic.filter.bar.min.js',
         // 'node_modules/angular-mocks/angular-mocks.js',
