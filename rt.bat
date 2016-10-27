@@ -7,4 +7,4 @@ pause
 @echo on
 
 :nodist use stable
-cd tests && r && cd ..
+cd tests\protractor && r && cd ..\..

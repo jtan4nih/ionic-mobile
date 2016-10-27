@@ -14,6 +14,10 @@
  */
 
 exports.config = {
+  onPrepare: function () {
+    protractor.basePath = __dirname + '/tests/protractor/';
+  },
+
   framework: 'jasmine',
 
   directConnect: true,

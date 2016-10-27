@@ -12,6 +12,7 @@ var express = require('express'),
     fileSystem = require('node-fs'),
     cors = require('cors');
 var bodyParser = require('body-parser'); 
+var sys = require("util");
 
 var rootDir = path.resolve('.', 'resources').toLowerCase();
 
@@ -25,7 +26,9 @@ var saveLikeId = 1;  //277;
 // options.parse(process.argv.slice(2), opts);
 //Setup Express
 var app = express();
-app.use(express.static('../www'));
+// app.use(express.static('../www'));
+app.use(express.static(path.resolve(__dirname, '../www')));
+sys.log('mockApiServer.js www path = [' + path.resolve(__dirname, '../www') + ']');
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());

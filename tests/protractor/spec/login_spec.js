@@ -4,12 +4,13 @@ var fileSystem = require('node-fs');
 var querystring = require('querystring');
 var request = require("request");
 var express = require('express');
-var s = require("../../server.js");
-var ms = require("../mockApiServer.js");
+var s = require(__dirname + "/../../../server.js");
+var ms = require(__dirname + "/../../mockApiServer.js");
 var path = require("path");
 var cors = require('cors');
 s.app.use(cors());
-s.app.use(express.static(path.join(__dirname, '../../www')));
+sys.log('login_spec.js www path = [' + path.resolve(__dirname, '../../../www') + ']');
+s.app.use(express.static(path.resolve(__dirname, '../../../www')));
 
 process.on('uncaughtException',function(e) {
     sys.log("Caught unhandled exception: " + e);

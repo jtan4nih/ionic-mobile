@@ -75,7 +75,7 @@ describe('Controller: myMessagesThreadsCtrl', function () {
 	});
 
 	// Specs here
-	it('items should have some values', function () {
+	it('inbox should have some values - TODO', function () {
 		// expect($scope.foo).toBe('bar');
 		// window.getInbox();
 

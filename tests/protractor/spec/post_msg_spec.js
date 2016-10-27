@@ -2,10 +2,10 @@ var sys = require("util");
 var querystring = require('querystring');
 var request = require("request");
 var express = require('express');
-var s = require("../../server.js");
-var ms = require("../mockApiServer.js");
+var s = require(__dirname + "/../../../server.js");
+var ms = require(__dirname + "/../../mockApiServer.js");
 var path = require("path");
-s.app.use(express.static(path.join(__dirname, '../../www')));
+s.app.use(express.static(path.resolve(__dirname, '/www')));
 
 process.on('uncaughtException',function(e) {
     sys.log("Caught unhandled exception: " + e);
