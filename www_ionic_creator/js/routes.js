@@ -10,50 +10,28 @@ angular.module('app.routes', [])
     
   
 
-      .state('menu.questActivity', {
-    url: '/quest_activity',
-    views: {
-      'side-menu21': {
-        templateUrl: 'templates/questActivity.html',
-        controller: 'questActivityCtrl'
-      }
-    }
-  })
-
-  .state('menu.questDetails', {
+      .state('questDetails', {
     url: '/quest_details',
-    views: {
-      'side-menu21': {
-        templateUrl: 'templates/questDetails.html',
-        controller: 'questDetailsCtrl'
-      }
-    }
+    templateUrl: 'templates/questDetails.html',
+    controller: 'questDetailsCtrl'
   })
 
-  .state('menu.questExit', {
+  .state('questExit', {
     url: '/page14',
-    views: {
-      'side-menu21': {
-        templateUrl: 'templates/questExit.html',
-        controller: 'questExitCtrl'
-      }
-    }
+    templateUrl: 'templates/questExit.html',
+    controller: 'questExitCtrl'
   })
 
-  .state('menu.questHow', {
+  .state('questHow', {
     url: '/page16',
-    views: {
-      'side-menu21': {
-        templateUrl: 'templates/questHow.html',
-        controller: 'questHowCtrl'
-      }
-    }
+    templateUrl: 'templates/questHow.html',
+    controller: 'questHowCtrl'
   })
 
   .state('menu', {
     url: '/menu',
     templateUrl: 'templates/menu.html',
-    abstract:true
+    controller: 'menuCtrl'
   })
 
   .state('menu.login', {
@@ -132,6 +110,16 @@ angular.module('app.routes', [])
       'side-menu21': {
         templateUrl: 'templates/questJoin.html',
         controller: 'questJoinCtrl'
+      }
+    }
+  })
+
+  .state('menu.powerUpsActions', {
+    url: '/page19',
+    views: {
+      'side-menu21': {
+        templateUrl: 'templates/powerUpsActions.html',
+        controller: 'powerUpsActionsCtrl'
       }
     }
   })
