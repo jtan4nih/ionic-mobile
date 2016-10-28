@@ -2,6 +2,7 @@
     <ion-content overflow-scroll="true" padding="true" class="has-header">
         <ion-refresher on-refresh="wall.reload()"></ion-refresher>
         <div>{{wall.processingMessage}}</div>
+<div data-panels="true" ng-show="wall.toppush"></div>
         <button style="width:100%;margin-bottom:10px;" class="button button-energized"
           ng-click="openModal()"
           id="wall-button11"

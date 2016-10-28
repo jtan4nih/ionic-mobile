@@ -47,7 +47,7 @@ References:
 
 https://github.com/urish/angular-moment
 */
-angular.module('app.controllers', ['controller.walls', 'controller.quests','controller.powerups','controller.activity'])
+angular.module('app.controllers', ['controller.walls', 'controller.quests','controller.powerups','controller.activity', 'angular.panels'])
 
 .controller('newMessageCtrl', function($location, $ionicFilterBar, Users, $scope, stemcfg, StemFactory, StemService, $state, $stateParams, $ionicLoading, capi) {
     StemFactory.store('newMessagesCtrl', $scope);
@@ -261,8 +261,7 @@ angular.module('app.controllers', ['controller.walls', 'controller.quests','cont
 
 // })
 
-
-.controller('loginCtrl', function($ionicPopup, $location, $scope,$state,$stateParams,StemFactory,$ionicLoading,StemService,stemcfg, $ionicHistory, capi) {
+.controller('loginCtrl', function($rootScope, $ionicPopup, $location, $scope,$state,$stateParams,StemFactory,$ionicLoading,StemService,stemcfg, $ionicHistory, capi) {
     // console.log($stateParams.m);
     // alert($stateParams.m);
 
@@ -271,7 +270,7 @@ angular.module('app.controllers', ['controller.walls', 'controller.quests','cont
     StemService.handleInvalidSession($state, $scope, localStorage.getItem(stemcfg.userid), $ionicPopup, $stateParams.m);
     // debugger
     var webHost = StemService.getRealHost($location.absUrl(), stemcfg, $stateParams);
-// debugger
+
     // console.log('inside loginCtrl');
     // StemService.handleStateParams($stateParams, stemcfg);
     function purgeUsersData() {

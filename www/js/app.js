@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('app', ['ionic', 'jett.ionic.filter.bar', 'app.controllers', 'app.routes', 'app.services', 'app.directives', 'app.silverbullet', 'ngResource', 'lbServices'])
+angular.module('app', ['ionic', 'jett.ionic.filter.bar', 'app.controllers', 'app.routes', 'app.services', 'app.directives', 'app.silverbullet', 'ngResource', 'lbServices', 'angular.panels'])
 
 .factory('$exceptionHandler', function() {
     return function(exception, cause) {
@@ -85,8 +85,8 @@ angular.module('app', ['ionic', 'jett.ionic.filter.bar', 'app.controllers', 'app
 //TODO need to be able to inject StemService into config!!!
 // configure.$inject = ['$httpProvider','LoopBackResourceProvider', 'StemService'];
 // function configure($httpProvider,LoopBackResourceProvider,stemcfg) {
-configure.$inject = ['$httpProvider','LoopBackResourceProvider'];
-function configure($httpProvider,LoopBackResourceProvider) {
+configure.$inject = ['$httpProvider','LoopBackResourceProvider', 'panelsProvider'];
+function configure($httpProvider, LoopBackResourceProvider, panelsProvider) {
     // You can only inject Providers (not instances)
     // into the config blocks
 
@@ -132,6 +132,39 @@ function configure($httpProvider,LoopBackResourceProvider) {
     //here's where you add your interceptor
     $httpProvider.interceptors.push('serviceLogger');
     $httpProvider.interceptors.push('serviceJWTTokenAdder');
+
+    panelsProvider
+    // .add({
+    //     id: 'test01',
+    //     position: 'left',
+    //     size: '700px',
+    //     templateUrl: '../resources/template/left.html',
+    //     controller: 'leftCtrl'
+    // })
+    // .add({
+    //     id: 'test02',
+    //     position: 'right',
+    //     size: '50%',
+    //     templateUrl: '../resources/template/right.html',
+    //     controller: 'rightCtrl'
+    // })
+    .add({
+        id: 'test03',
+        position: 'top',
+        size: '20%',
+        templateUrl: '../resources/template/top.html',
+        controller: 'topCtrl',
+        closeCallbackFunction: 'topClose'
+    })
+    // .add({
+    //     id: 'test04',
+    //     position: 'bottom',
+    //     size: '80%',
+    //     templateUrl: '../resources/template/bottom.html',
+    //     controller: 'testpanelCtrl',
+    //     closeCallbackFunction: 'bottomClose'
+    // })
+    ;
 
 }
 
