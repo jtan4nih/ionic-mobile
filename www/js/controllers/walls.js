@@ -167,8 +167,8 @@ if(currentFlag) {
         });
     }
 
-    //=== TODO it is buggy!!! esp on loggedinuserliked
-    component.saveLike = function(that, itemIndex) {
+    //=== TODO it is not complete - need to pass the current selected item (Ionic) and complete updateItem (Loopback)
+    component.saveLike_ = function(that, itemIndex) {
         $ionicLoading.show({template: `Saving like ...`});
 
         var webHost = StemService.getRealHost($location.absUrl(), stemcfg, $stateParams);
@@ -190,8 +190,8 @@ if(currentFlag) {
         capi(webHost, '/api/Threads/saveLike', 'POST', 'model', 'method', json, updateItem, null);
     }
 
-    //=== Notes: it is not used anymore as it is super slow! Keep this just for reference
-    component.saveLike_ = function(that, itemIndex) {
+    //=== Notes: this it is super slow!
+    component.saveLike = function(that, itemIndex) {
         $ionicLoading.show({template: `Saving like ...`});
 
         var webHost = StemService.getRealHost($location.absUrl(), stemcfg, $stateParams);
