@@ -22,6 +22,8 @@ angular.module('controller.walls', [])
 
 .controller('wallCtrl', function($rootScope, $location, $scope, $ionicPopover, $ionicPopup, $ionicModal, $ionicLoading, StemFactory,StemService,stemcfg, $state, $stateParams, capi) {
     var component = this;
+    $scope.earnedPoint = 0;
+    $scope.appchck1 = true;
     StemService.handleInvalidSession($state, $scope, localStorage.getItem(stemcfg.userid), $ionicPopup, $stateParams.m);
     StemFactory.store('wallCtrl', $scope);
 
@@ -39,6 +41,7 @@ $scope.openPopup = function() {
         scope: $scope
     });
 }
+$scope.openPopup();
 $scope.closePopup = function() {
     $scope.alertPopup.close();
 }
