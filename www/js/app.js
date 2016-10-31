@@ -40,6 +40,9 @@ angular.module('app', ['ionic', 'jett.ionic.filter.bar', 'app.controllers', 'app
 })
 
 .run(['$ionicPlatform', 'amMoment', function($ionicPlatform, amMoment) {
+    // You can only inject instances (not Providers)
+    // into the run blocks
+
     amMoment.changeTimezone('Europe/Paris');
 
     $ionicPlatform.ready(function() {
@@ -76,11 +79,6 @@ angular.module('app', ['ionic', 'jett.ionic.filter.bar', 'app.controllers', 'app
 })
 
 .config(configure)
-
-.run(function($location) {
-    // You can only inject instances (not Providers)
-    // into the run blocks
-});
 
 //TODO need to be able to inject StemService into config!!!
 // configure.$inject = ['$httpProvider','LoopBackResourceProvider', 'StemService'];

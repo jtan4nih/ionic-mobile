@@ -10,14 +10,14 @@ angular.module('controller.walls', [])
 
 //top panel controller
 .controller('topCtrl', ['$rootScope', '$scope', 'panels', function ($rootScope, $scope, panels) {
-    $scope.topClose = function () {
-        $rootScope.$broadcast('toppush-close', {});
-    };
+//     $scope.close = function () {
+//         $rootScope.$broadcast('toppush-close', {});
+//     };
 
-    $rootScope.$on('toppush-open', function(event, args) {
-        $scope.message = args.message;
-        panels.open("test03");
-    });
+//     $rootScope.$on('toppush-open', function(event, args) {
+//         $scope.message = args.message;
+//         panels.open("test03");
+//     });
 }])
 
 .controller('wallCtrl', function($rootScope, $location, $scope, $ionicPopover, $ionicPopup, $ionicModal, $ionicLoading, StemFactory,StemService,stemcfg, $state, $stateParams, capi) {
@@ -25,9 +25,23 @@ angular.module('controller.walls', [])
     StemService.handleInvalidSession($state, $scope, localStorage.getItem(stemcfg.userid), $ionicPopup, $stateParams.m);
     StemFactory.store('wallCtrl', $scope);
 
-    $rootScope.$on('toppush-close', function(event, args) {
-        component.toppush = false;
+    // $rootScope.$on('toppush-close', function(event, args) {
+    //     debugger
+    //     component.toppush = false;
+    // });
+
+//just for test
+$scope.openPopup = function() {
+    $scope.alertPopup = $ionicPopup.show({
+        templateUrl: 'resources/template/top.html',
+        title: 'PowerUps Form',
+        subTitle: 'Have you completed these?',
+        scope: $scope
     });
+}
+$scope.closePopup = function() {
+    $scope.alertPopup.close();
+}
 
     var webHost = StemService.getRealHost($location.absUrl(), stemcfg, $stateParams);
 var urlToChangeStream = webHost + '/api/Audits/change-stream';
@@ -36,10 +50,10 @@ var src = new EventSource(urlToChangeStream);
 src.addEventListener('data', function(msg) {
     // Never get this event, even though the changes are written to process.stdout by the above code
     var data = JSON.parse(msg.data);
-    component.toppush = true;
-
+    // component.toppush = true;
     // console.log('Save 1', data);
-    $rootScope.$broadcast('toppush-open', {message : $scope.message});
+    // $rootScope.$broadcast('toppush-open', {message : $scope.message});
+    $scope.openPopup();
     console.log('Save 2', data); // the change object
 });
 src.addEventListener('open', function(msg) {
