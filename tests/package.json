@@ -14,6 +14,7 @@
     "cors": "^2.7.1",
     "nock": "^8.0.0",
     "node-fs": "^0.1.7",
-    "node-options": "0.0.7"
+    "node-options": "0.0.7",
+    "request": "^2.79.0"
   }
 }

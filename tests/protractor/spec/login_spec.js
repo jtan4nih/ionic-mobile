@@ -28,6 +28,7 @@ describe('login_spec.js: Ionic Web Tests', function () {
     var swaggerResp = text;
 
   beforeEach(function () {
+    // browser.ignoreSynchronization = true;
     // Load up a view and wait for it to be done with its rendering and epicycles.
     browser.get('http://127.0.0.1:3064/#/menu/login');
     browser.waitForAngular();
@@ -41,6 +42,7 @@ describe('login_spec.js: Ionic Web Tests', function () {
     }
   });
 
+return;
   // afterAll(function() {
   //   s.server.close();  //NB: sadly jasmine-node does not support this as at 4/1/2016 :(
   // });

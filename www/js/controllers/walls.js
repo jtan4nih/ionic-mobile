@@ -41,7 +41,7 @@ $scope.openPopup = function() {
         scope: $scope
     });
 }
-$scope.openPopup();
+// $scope.openPopup();  //uncomment this to test the notification!
 $scope.closePopup = function() {
     $scope.alertPopup.close();
 }

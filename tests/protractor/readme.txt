@@ -1,3 +1,8 @@
+TODO
+----
+Test is broken as it used to be Root directory = 'c:\users\user\ionic-mobile\tests\resources'
+but now it is at Root directory = 'c:\users\user\ionic-mobile\tests\protractor\resources'
+
 Setup
 -----
 
