@@ -1,0 +1,1 @@
+nodist use 6.6.0 && npm i && npm i protractor && node node_modules\protractor\bin\webdriver-manager update --standalone
