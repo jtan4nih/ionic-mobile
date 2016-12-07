@@ -1,1 +1,1 @@
-karma start
+node_modules\.bin\karma start

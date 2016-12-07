@@ -91,11 +91,11 @@ describe('Controller: newMessageCtrl', function () {
 	it('should be able to send message', function () {
 		var url = 'undefined/api/UsersThreads/sendmessage';
     	// var httpResponse = [{ "stuffId": 1 }, { "stuffId": 2 }];
-	 //    httpBackend.whenPOST(url).respond(200, respond(function(method, url, data, headers) {
-		// 	console.log("POST -> " + url);
+	    httpBackend.whenPOST(url).respond(200, respond(function(method, url, data, headers) {
+			console.log("POST -> " + url);
 
-		// 	return [200, 'SUCCESS!!'];
-		// });
+			return [200, 'SUCCESS!!'];
+		});
 
 		// expect($scope.foo).toBe('bar');
 		var component = newMessageCtrl;
@@ -125,12 +125,12 @@ describe('Controller: newMessageCtrl', function () {
 
 	it('should be able to send message', function () {
 		var url = 'undefined/api/UsersThreads/sendmessage';
-    	// var httpResponse = [{ "stuffId": 1 }, { "stuffId": 2 }];
-	 //    httpBackend.whenPOST(url).respond(200, respond(function(method, url, data, headers) {
-		// 	console.log("POST -> " + url);
+    	var httpResponse = [{ "stuffId": 1 }, { "stuffId": 2 }];
+	    httpBackend.whenPOST(url).respond(200, respond(function(method, url, data, headers) {
+			console.log("POST -> " + url);
 
-		// 	return [200, 'SUCCESS!!'];
-		// });
+			return [200, 'SUCCESS!!'];
+		});
 
 		// expect($scope.foo).toBe('bar');
 		var component = newMessageCtrl;
