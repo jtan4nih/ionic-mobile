@@ -1,1 +1,1 @@
-npm i karma-cli -S && npm install karma-chrome-launcher -S --link
+npm i karma -D &&  npm install karma-jasmine -D && npm i jasmine-core -D && npm install karma-chrome-launcher -S --link
