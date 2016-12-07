@@ -6,8 +6,10 @@ var s = require(__dirname + "/../../../server.js");
 var ms = require(__dirname + "/../../mockApiServer.js");
 var path = require("path");
 var cors = require('cors');
-s.app.use(express.static(path.resolve(__dirname, '/www')));
 s.app.use(cors());
+sys.log('login_spec.js www path = [' + path.resolve(__dirname, '../../../www') + ']');
+s.app.use(express.static(path.resolve(__dirname, '../../../www')));
+ms.app.use(express.static(path.resolve(__dirname, '../../../www')));
 
 process.on('uncaughtException',function(e) {
     sys.log("Caught unhandled exception: " + e);

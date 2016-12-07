@@ -21,7 +21,7 @@ describe('login_spec.js: Ionic Web Tests', function () {
   var loginid = "test@gmail.com";
   var password = "111111";
   var lastTest;
-    var resourceDir = path.resolve('.', 'spec/swagger-client.js');
+    var resourceDir = path.resolve('.', '../protractor/spec/swagger-client.js');
     console.log('swagger.json [' + resourceDir + ']');
     var text = fileSystem.readFileSync(resourceDir);
     // var swaggerResp = stringFormat(text);
@@ -42,7 +42,6 @@ describe('login_spec.js: Ionic Web Tests', function () {
     }
   });
 
-return;
   // afterAll(function() {
   //   s.server.close();  //NB: sadly jasmine-node does not support this as at 4/1/2016 :(
   // });
