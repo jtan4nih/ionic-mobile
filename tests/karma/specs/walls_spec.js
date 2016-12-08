@@ -57,8 +57,7 @@ describe('Controller: wallCtrl', function () {
 			$provide.constant('stemcfg', '');
 		});
 
-		inject(function ($controller, _StemFactory_, _capi_, _StemService_, _$stateParams_, _$state_, _$ionicPopup_, _$location_, _$ionicPopover_, _$ionicLoading_, _$ionicModal_, _stemcfg_) {
-			$scope = {};
+		inject(function ($rootScope, $controller, _StemFactory_, _capi_, _StemService_, _$stateParams_, _$state_, _$ionicPopup_, _$location_, _$ionicPopover_, _$ionicLoading_, _$ionicModal_, _stemcfg_) {
 			StemFactory = _StemFactory_;
 			capi = _capi_;
 			StemService = _StemService_;
@@ -72,7 +71,7 @@ describe('Controller: wallCtrl', function () {
 			stemcfg = _stemcfg_;
 
 			wallCtrl = $controller('wallCtrl', {
-				$scope: $scope
+				$scope: $rootScope.$new()
 			});
 		});
 
@@ -85,6 +84,9 @@ describe('Controller: wallCtrl', function () {
 	    // $scope.$broadcast('$ionicView.enter');
 		// $scope.$apply();
 		var itemIndex = 0;
+		var data = { liked: false };
+		component.items = [];
+		component.items.push(data);
 		component.saveLike(component, itemIndex);
 
 		expect($ionicLoading.show).toHaveBeenCalledWith({template: `Saving like ...`});
