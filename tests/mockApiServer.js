@@ -34,10 +34,23 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 // var server = app.listen(opts.port);
 app.set('port', process.env.MOCK_API_PORT || 3000);  //NB: 8080 is the default port - DO NOT forget to change the baseUrl inside protractor.conf.js if the default port is changed!
-var server = app.listen(app.get('port'), function () {
+
+    var http = require('http');
+    // var app = express();
+    var server = http.createServer(app);
+    server.on('error', function (e) {
+        // do your thing
+        console.log('Mock API Server already started! Doing nothing ...');
+    });
+server.listen(app.get('port'), function () {
   console.log('Mock API Server Listening on http://localhost:' + app.get('port'));
   console.log('Root directory = \'' + rootDir + '\'');
 });
+
+// var server = app.listen(app.get('port'), function () {
+//   console.log('Mock API Server Listening on http://localhost:' + app.get('port'));
+//   console.log('Root directory = \'' + rootDir + '\'');
+// });
 
 app.all('/explorer', function (req, res) {
     if (req.method == 'GET') {
