@@ -1,4 +1,6 @@
+'use strict';
 var sys = require("util");
+var fileSystem = require('node-fs');
 var querystring = require('querystring');
 var request = require("request");
 var express = require('express');
@@ -35,7 +37,7 @@ describe('wall_spec.js: Ionic Web Tests', function () {
     // });
 
     // Load up a view and wait for it to be done with its rendering and epicycles.
-    browser.get('http://127.0.0.1:3064/#/menu/login');
+    browser.get('/#/menu/login');
     browser.waitForAngular();
   });
 

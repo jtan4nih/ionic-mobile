@@ -39,7 +39,7 @@ exports.config = {
 
   // Spec patterns are relative to the location of this config.
   specs: [
-    'spec/login_spec.js'
+    'spec/save_like_spec.js'
   ],
 
   // -----------------------------------------------------------------

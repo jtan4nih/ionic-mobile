@@ -49,24 +49,24 @@ $scope.closePopup = function() {
     var webHost = StemService.getRealHost($location.absUrl(), stemcfg, $stateParams);
 var urlToChangeStream = webHost + '/api/Audits/change-stream';
 // debugger
-var src = new EventSource(urlToChangeStream);
-src.addEventListener('data', function(msg) {
-    // Never get this event, even though the changes are written to process.stdout by the above code
-    var data = JSON.parse(msg.data);
-    // component.toppush = true;
-    // console.log('Save 1', data);
-    // $rootScope.$broadcast('toppush-open', {message : $scope.message});
-    $scope.openPopup();
-    console.log('Save 2', data); // the change object
-});
-src.addEventListener('open', function(msg) {
-  // This works if I use the above url
-  console.log('Open', msg);
-});
-src.addEventListener('error', function(msg) {
-  // This works if I use an invalid url
-  console.log('Error', msg);
-});
+// var src = new EventSource(urlToChangeStream);
+// src.addEventListener('data', function(msg) {
+//     // Never get this event, even though the changes are written to process.stdout by the above code
+//     var data = JSON.parse(msg.data);
+//     // component.toppush = true;
+//     // console.log('Save 1', data);
+//     // $rootScope.$broadcast('toppush-open', {message : $scope.message});
+//     $scope.openPopup();
+//     console.log('Save 2', data); // the change object
+// });
+// src.addEventListener('open', function(msg) {
+//   // This works if I use the above url
+//   console.log('Open', msg);
+// });
+// src.addEventListener('error', function(msg) {
+//   // This works if I use an invalid url
+//   console.log('Error', msg);
+// });
 
     // debugger
     component.email = localStorage.getItem(stemcfg.user);
