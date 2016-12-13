@@ -9,7 +9,8 @@ var ms = require(__dirname + "/../../mockApiServer.js");
 var path = require("path");
 var cors = require('cors');
 s.app.use(cors());
-sys.log('login_spec.js www path = [' + path.resolve(__dirname, '../../../www') + ']');
+ms.app.use(cors());
+sys.log('wall_spec.js www path = [' + path.resolve(__dirname, '../../../www') + ']');
 s.app.use(express.static(path.resolve(__dirname, '../../../www')));
 ms.app.use(express.static(path.resolve(__dirname, '../../../www')));
 
@@ -19,7 +20,6 @@ process.on('uncaughtException',function(e) {
 });
 
 describe('wall_spec.js: Ionic Web Tests', function () {
-  'use strict';
   var EXPECTED_POST_BUTTON = "What's Happening?";
   var EXPECTED_POST_BUTTON_SELECTOR = "#wall-button11";
   var EXPECTED_POST_SUBMIT_SELECTOR = "body > div.modal-backdrop.active > div.modal-wrapper > ion-modal-view > ion-content > div.scroll > div.scroll > button";
@@ -36,9 +36,13 @@ describe('wall_spec.js: Ionic Web Tests', function () {
     //     console.log('Mock API Server listening on port ' + s.mockApiService.get('port'));
     // });
 
+    // browser.ignoreSynchronization = true;
     // Load up a view and wait for it to be done with its rendering and epicycles.
     browser.get('/#/menu/login');
     browser.waitForAngular();
+    // browser.sleep(3000);
+
+    // browser.ignoreSynchronization = false;
   });
 
   afterEach(function() {

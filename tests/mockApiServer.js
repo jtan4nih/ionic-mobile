@@ -32,9 +32,19 @@ sys.log('mockApiServer.js www path = [' + path.resolve(__dirname, '../www') + ']
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+var jsDir = path.resolve(__dirname + '/../www/js');
+console.log('Mock API Server /js directory = ' + jsDir);
+app.use("/js", express.static(jsDir));
+app.disable('x-powered-by');
+// Add headers
+// app.use(function (req, res, next) {
+//     res.header("Access-Control-Allow-Origin", "*");
+//     res.header("Access-Control-Allow-Headers", "Cache-Control, Pragma, Origin, Authorization, Content-Type, X-Requested-With");
+//     res.header("Access-Control-Allow-Methods", "GET, PUT, POST");
+//     next();
+// });
 // var server = app.listen(opts.port);
 app.set('port', process.env.MOCK_API_PORT || 3000);  //NB: 8080 is the default port - DO NOT forget to change the baseUrl inside protractor.conf.js if the default port is changed!
-
     var http = require('http');
     // var app = express();
     var server = http.createServer(app);
@@ -52,6 +62,13 @@ server.listen(app.get('port'), function () {
 //   console.log('Root directory = \'' + rootDir + '\'');
 // });
 
+// app.all("/api/*", function(req, res, next) {
+//   if (req.method.toLowerCase() !== "options") {
+//     return next();
+//   }
+//   return res.send(204);
+// });
+
 app.all('/explorer', function (req, res) {
     if (req.method == 'GET') {
         res.status(200).send('StrongLoop API Explorer');
@@ -59,9 +76,20 @@ app.all('/explorer', function (req, res) {
     res.end();
 });
 
+app.all('/js/swagger-client.js', function (req, res) {
+    var resourceDir = path.resolve(__dirname, './protractor/swagger.json');
+    console.log('/js/swagger-client.js: Looking for swagger-client.js at [' + resourceDir + ']');
+    var text = fileSystem.readFileSync(resourceDir);
+    var message = stringFormat(text);
+    if (req.method == 'GET') {
+        res.status(200).send(message);
+    }
+    res.end();
+});
+
 app.all('/explorer/swagger.json', function (req, res) {
-    var resourceDir = path.resolve('.', 'swagger.json');
-    console.log('swagger.json [' + resourceDir + ']');
+    var resourceDir = path.resolve(__dirname, './protractor/swagger.json');
+    console.log('/explorer/swagger.json: Looking for swagger.json at [' + resourceDir + ']');
     var text = fileSystem.readFileSync(resourceDir);
     var message = stringFormat(text);
     if (req.method == 'GET') {

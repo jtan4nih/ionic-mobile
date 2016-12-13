@@ -1,7 +1,8 @@
-TODO
-----
-Test is broken as it used to be Root directory = 'c:\users\user\ionic-mobile\tests\resources'
-but now it is at Root directory = 'c:\users\user\ionic-mobile\tests\protractor\resources'
+~~~~~~~~~~ Notes about swagger-client.js ~~~~~~~~~~
+This file has been changed locally and it is not the same with the latest greatest on the web.
+It addressed some issue with localhost (thus 127.0.0.1 can not work correctly, but please test it out to confirm it) testing.
+swagger-client.js can not appear in more than two places, suspected it is doing something that will cause CORS error.
+~~~~~~~~~~ Notes about swagger-client.js ~~~~~~~~~~
 
 Setup
 -----
