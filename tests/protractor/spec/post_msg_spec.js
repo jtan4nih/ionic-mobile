@@ -42,8 +42,8 @@ describe('post_msg_spec.js: Ionic Web Tests', function () {
 
   afterEach(function() {
     if(lastTest) {
-      s.server.close();
-      ms.server.close();
+      // s.server.close();
+      // ms.server.close();
     }
   });
 

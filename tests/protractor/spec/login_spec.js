@@ -32,15 +32,15 @@ describe('login_spec.js: Ionic Web Tests', function () {
   beforeEach(function () {
     // browser.ignoreSynchronization = true;
     // Load up a view and wait for it to be done with its rendering and epicycles.
-    browser.get('/');
-    browser.waitForAngular();
+    // browser.get('/');
+    // browser.waitForAngular();
   });
 
   afterEach(function() {
     //=== KISS
     if(lastTest) {
-      s.server.close();
-      ms.server.close();
+      // s.server.close();
+      // ms.server.close();
     }
   });
 
@@ -49,45 +49,54 @@ describe('login_spec.js: Ionic Web Tests', function () {
   // });
 
   it('view login title', function () {
-    var el = browser.findElement(by.css('#login-button1'));
-    expect(el.isDisplayed()).toBe(true);
-    expect(el.getText()).toBe('Log in');
-    s.server.close();
+    browser.get('/').then(function() {
+      var el = browser.findElement(by.css('#login-button1'));
+      expect(el.isDisplayed()).toBe(true);
+      expect(el.getText()).toBe('Log in');
+      s.server.close();
+    })
   });
 
   it('view wall title - invalid login test', function () {
-    var el = browser.findElement(by.css('#login-button1'));
-    expect(el.isDisplayed()).toBe(true);
-    element(by.css('#loginid')).sendKeys(loginid);
-    element(by.css('#password')).sendKeys(password + "t");  //purposely enter a wrong password
-    browser.sleep(3000);
-    element(by.css('#login-button1')).click().then(function() {
-      console.log('********************* IF YOU ARE RUNNING THIS THE FIRST TIME, IT MIGHT TIME DUE OUT TO SERVICE COLD START AND YOU JUST NEED TO RUN THIS TEST AGAIN AND IT SHOULD WORK! LOL ********************* ');
+    browser.get('/').then(function() {
+      var el = browser.findElement(by.css('#login-button1'));
+      expect(el.isDisplayed()).toBe(true);
+      element(by.css('#loginid')).sendKeys(loginid);
+      element(by.css('#password')).sendKeys(password + "t");  //purposely enter a wrong password
+browser.waitForAngular();
       browser.sleep(3000);
+      element(by.css('#login-button1')).click().then(function() {
+        console.log('********************* IF YOU ARE RUNNING THIS THE FIRST TIME, IT MIGHT TIME DUE OUT TO SERVICE COLD START AND YOU JUST NEED TO RUN THIS TEST AGAIN AND IT SHOULD WORK! LOL ********************* ');
+        browser.sleep(3000);
 
-      browser.getCurrentUrl().then(function(url) {
-        console.log('url [' + url + ']');
-        expect(url).toContain('#/menu/login');
+        browser.getCurrentUrl().then(function(url) {
+          console.log('url [' + url + ']');
+          expect(url).toContain('#/menu/login');
+        });
       });
-    });
+    })
   });
 
   it('view wall title - valid login test (happy path)', function () {
-    var el = browser.findElement(by.css('#login-button1'));
-    expect(el.isDisplayed()).toBe(true);
-    element(by.css('#loginid')).sendKeys(loginid);
-    element(by.css('#password')).sendKeys(password
-      // + webdriver.Key.RETURN
-    );
-    browser.sleep(3000);
-    element(by.css('#login-button1')).click().then(function() {
+    browser.get('/').then(function() {
+      var el = browser.findElement(by.css('#login-button1'));
+      expect(el.isDisplayed()).toBe(true);
+      element(by.css('#loginid')).sendKeys(loginid);
+      element(by.css('#password')).sendKeys(password
+        // + webdriver.Key.RETURN
+      );
+browser.waitForAngular();
       browser.sleep(3000);
-      browser.getCurrentUrl().then(function(url) {
-          console.log('url [' + url + ']');
-          expect(url).toContain('#/menu/wall');
+      element(by.css('#login-button1')).click().then(function() {
+        browser.sleep(3000);
+        browser.getCurrentUrl().then(function(url) {
+            console.log('url [' + url + ']');
+            expect(url).toContain('#/menu/wall');
+        });
       });
+      // s.server.close();   //<--------- DO NOT forget: move this to the last test if you need to!
+      lastTest = true;  //KISS
     });
-    // s.server.close();   //<--------- DO NOT forget: move this to the last test if you need to!
-    lastTest = true;  //KISS
-  });
+  })
+
 });

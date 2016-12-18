@@ -38,8 +38,8 @@ describe('wall_spec.js: Ionic Web Tests', function () {
 
     // browser.ignoreSynchronization = true;
     // Load up a view and wait for it to be done with its rendering and epicycles.
-    browser.get('/#/menu/login');
-    browser.waitForAngular();
+    // browser.get('/#/menu/login');
+    // browser.waitForAngular();
     // browser.sleep(3000);
 
     // browser.ignoreSynchronization = false;
@@ -47,12 +47,13 @@ describe('wall_spec.js: Ionic Web Tests', function () {
 
   afterEach(function() {
     if(lastTest) {
-      s.server.close();
-      ms.server.close();
+      // s.server.close();
+      // ms.server.close();
     }
   });
 
   it('view wall title + view loading more button + view message popover', function () {
+    browser.get('/').then(function() {
     var el = browser.findElement(by.css('#login-button1'));
     expect(el.isDisplayed()).toBe(true);
     element(by.css('#loginid')).sendKeys(loginid);
@@ -60,6 +61,7 @@ describe('wall_spec.js: Ionic Web Tests', function () {
       // + webdriver.Key.RETURN
     );
     console.log('********************* IF YOU ARE RUNNING THIS THE FIRST TIME, IT MIGHT TIME OUT DUE TO SERVICE COLD START AND YOU JUST NEED TO RUN THIS TEST AGAIN AND IT SHOULD WORK! LOL ********************* ');
+browser.waitForAngular();
     browser.sleep(3000);
     element(by.css('#login-button1')).click().then(function() {
       browser.sleep(3000);
@@ -163,5 +165,6 @@ return
 
     lastTest = true;  //<--------- DO NOT forget: move this to the last test if you need to!
   });
+    })
 
 });
